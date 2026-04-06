@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+dist/
+build/
+site/
+.next/
+.astro/
+.svelte-kit/
+.cache/
+.parcel-cache/
+.vite/
+coverage/
+
