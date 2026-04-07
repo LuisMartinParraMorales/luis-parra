@@ -11,3 +11,4 @@ site/
 .vite/
 coverage/
 
+.vercel
