@@ -31,3 +31,4 @@ Anything that is more private, strategic, or claim-checking heavy should stay in
 - `content/`: public-facing page content once Luis explicitly wants it promoted there
 - `content/projects/project-story-template.md`: reusable structure for project pages
 - `docs/agent-bootstrap-prompt.md`: instructions for future agents working in this repo
+- `docs/local-dev-setup.md`: minimal local setup and daily-start commands for Node and Vercel CLI
