@@ -32,6 +32,10 @@ Internal/private source of truth:
 
 - `/Users/luis.parramorales/dev/career-foundation`
 
+Primary current source of truth for experience and project framing:
+
+- `/Users/luis.parramorales/dev/career-foundation/cv/master-cv.docx`
+
 Relevant project repos to inspect:
 
 - `/Users/luis.parramorales/dev/ntap`
@@ -61,6 +65,11 @@ Do not write public marketing copy until you understand:
 - what is public-safe to share
 - which claims are strong versus speculative
 
+Priority rule:
+
+- treat the current master CV as the primary truth for Luis's experience, chronology, education wording, project framing, and technical stack
+- use repos and docs to support, sharpen, and evidence that story rather than to override it
+
 ## Portfolio Context To Rebuild
 
 Luis wants the site to feel like a product, not a generic portfolio.
@@ -85,7 +94,7 @@ The most important projects to understand:
 
 ## Tasks
 
-1. Read `context/agent/` and the internal knowledge-base docs first.
+1. Read the current master CV first, then `context/agent/` and the internal knowledge-base docs.
 2. Inspect the source repos and extract the strongest public-safe stories.
 3. For each major project, prepare notes in this structure:
    - problem
