@@ -1,3 +1,4 @@
+import { ContactMethodCard } from "@/components/contact-method-card";
 import { PageIntro } from "@/components/page-intro";
 import { contactIntro, siteIdentity } from "@/lib/site-content";
 
@@ -12,44 +13,31 @@ export default function ContactPage() {
       />
 
       <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        <a
+        <ContactMethodCard
           href={`mailto:${siteIdentity.email}`}
-          className="info-card rounded-[1.4rem] p-6"
-        >
-          <p className="eyebrow">Email</p>
-          <p className="mt-3 text-2xl font-semibold break-all">
-            {siteIdentity.email}
-          </p>
-          <p className="mt-4 text-sm leading-7 text-muted sm:text-base">
-            Best for opportunities, collaboration, or asking for the latest CV.
-          </p>
-        </a>
+          label="Email"
+          value={siteIdentity.email}
+          description="Best for opportunities, collaboration, or asking for the latest CV."
+          tone="gmail"
+        />
 
-        <a
+        <ContactMethodCard
           href={siteIdentity.linkedinUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="info-card rounded-[1.4rem] p-6"
-        >
-          <p className="eyebrow">LinkedIn</p>
-          <p className="mt-3 text-2xl font-semibold">{siteIdentity.linkedinLabel}</p>
-          <p className="mt-4 text-sm leading-7 text-muted sm:text-base">
-            Professional profile, public experience summary, and a good route for direct outreach.
-          </p>
-        </a>
+          label="LinkedIn"
+          value={siteIdentity.linkedinLabel}
+          description="Professional profile, public experience summary, and a good route for direct outreach."
+          tone="linkedin"
+          external
+        />
 
-        <a
+        <ContactMethodCard
           href={siteIdentity.githubUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="info-card rounded-[1.4rem] p-6"
-        >
-          <p className="eyebrow">GitHub</p>
-          <p className="mt-3 text-2xl font-semibold">{siteIdentity.githubLabel}</p>
-          <p className="mt-4 text-sm leading-7 text-muted sm:text-base">
-            Public code, portfolio repo, and the most inspectable technical proof.
-          </p>
-        </a>
+          label="GitHub"
+          value={siteIdentity.githubLabel}
+          description="Public code, portfolio repo, and the most inspectable technical proof."
+          tone="github"
+          external
+        />
       </section>
     </div>
   );

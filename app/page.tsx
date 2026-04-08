@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ContactMethodCard } from "@/components/contact-method-card";
 import { HomeSection } from "@/components/home-section";
 import { ProjectOverviewCard } from "@/components/project-overview-card";
 import {
@@ -231,31 +232,29 @@ export default function Home() {
           </div>
 
           <div className="grid gap-4">
-            <a
+            <ContactMethodCard
               href={`mailto:${siteIdentity.email}`}
-              className="info-card rounded-[1.4rem] p-5"
-            >
-              <p className="eyebrow">Email</p>
-              <p className="mt-3 text-lg font-semibold break-all">{siteIdentity.email}</p>
-            </a>
-            <a
+              label="Email"
+              value={siteIdentity.email}
+              tone="gmail"
+              compact
+            />
+            <ContactMethodCard
               href={siteIdentity.linkedinUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="info-card rounded-[1.4rem] p-5"
-            >
-              <p className="eyebrow">LinkedIn</p>
-              <p className="mt-3 text-lg font-semibold">{siteIdentity.linkedinLabel}</p>
-            </a>
-            <a
+              label="LinkedIn"
+              value={siteIdentity.linkedinLabel}
+              tone="linkedin"
+              compact
+              external
+            />
+            <ContactMethodCard
               href={siteIdentity.githubUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="info-card rounded-[1.4rem] p-5"
-            >
-              <p className="eyebrow">GitHub</p>
-              <p className="mt-3 text-lg font-semibold">{siteIdentity.githubLabel}</p>
-            </a>
+              label="GitHub"
+              value={siteIdentity.githubLabel}
+              tone="github"
+              compact
+              external
+            />
           </div>
         </div>
       </HomeSection>

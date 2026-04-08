@@ -33,7 +33,7 @@ export function ProjectOverviewCard({
       href={`/projects#${project.id}`}
       aria-label={project.ctaLabel}
       className={cn(
-        "project-card group block cursor-pointer rounded-[1.7rem] p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/60 focus-visible:ring-offset-4 focus-visible:ring-offset-background",
+        "project-card project-card-home group block cursor-pointer rounded-[1.7rem] p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/60 focus-visible:ring-offset-4 focus-visible:ring-offset-background",
         className,
       )}
     >
@@ -82,7 +82,7 @@ export function ProjectOverviewCard({
       </div>
 
       <div className="mt-6">
-        <span className="cta-link">
+        <span className="cta-link cta-link-dark">
           <span>{project.ctaLabel}</span>
           <span aria-hidden="true">↗</span>
         </span>
