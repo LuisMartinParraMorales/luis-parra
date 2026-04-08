@@ -11,7 +11,7 @@ export default function ContactPage() {
         summary={contactIntro}
       />
 
-      <section className="grid gap-5 md:grid-cols-2">
+      <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         <a
           href={`mailto:${siteIdentity.email}`}
           className="info-card rounded-[1.4rem] p-6"
@@ -22,6 +22,19 @@ export default function ContactPage() {
           </p>
           <p className="mt-4 text-sm leading-7 text-muted sm:text-base">
             Best for opportunities, collaboration, or asking for the latest CV.
+          </p>
+        </a>
+
+        <a
+          href={siteIdentity.linkedinUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="info-card rounded-[1.4rem] p-6"
+        >
+          <p className="eyebrow">LinkedIn</p>
+          <p className="mt-3 text-2xl font-semibold">{siteIdentity.linkedinLabel}</p>
+          <p className="mt-4 text-sm leading-7 text-muted sm:text-base">
+            Professional profile, public experience summary, and a good route for direct outreach.
           </p>
         </a>
 

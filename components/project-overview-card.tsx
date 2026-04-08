@@ -20,6 +20,7 @@ const visualLabelByKind: Record<ProjectVisualKind, string> = {
   ui: "UI",
   architecture: "Architecture",
   concept: "Concept visual",
+  visualization: "Visual output",
 };
 
 export function ProjectOverviewCard({
@@ -57,7 +58,9 @@ export function ProjectOverviewCard({
         <span aria-hidden="true">/</span>
         <span>{project.period}</span>
       </div>
-      <h3 className="section-title mt-4 text-3xl font-normal">{project.title}</h3>
+      <h3 className="section-title mt-4 text-3xl font-normal">
+        {project.homeTitle ?? project.title}
+      </h3>
       <p className="mt-4 max-w-2xl text-base leading-8 text-muted">{project.summary}</p>
 
       <div className="mt-5 flex flex-wrap gap-2">

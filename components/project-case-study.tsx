@@ -18,6 +18,7 @@ const visualLabelByKind: Record<ProjectVisualKind, string> = {
   ui: "UI",
   architecture: "Architecture",
   concept: "Concept visual",
+  visualization: "Visual output",
 };
 
 function ProjectVisualFigure({

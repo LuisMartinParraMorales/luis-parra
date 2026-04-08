@@ -239,6 +239,15 @@ export default function Home() {
               <p className="mt-3 text-lg font-semibold break-all">{siteIdentity.email}</p>
             </a>
             <a
+              href={siteIdentity.linkedinUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="info-card rounded-[1.4rem] p-5"
+            >
+              <p className="eyebrow">LinkedIn</p>
+              <p className="mt-3 text-lg font-semibold">{siteIdentity.linkedinLabel}</p>
+            </a>
+            <a
               href={siteIdentity.githubUrl}
               target="_blank"
               rel="noreferrer"

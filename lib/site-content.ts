@@ -14,7 +14,7 @@ export type NavItem = {
   route: string;
 };
 
-export type ProjectVisualKind = "ui" | "architecture" | "concept";
+export type ProjectVisualKind = "ui" | "architecture" | "concept" | "visualization";
 
 export type ProjectVisual = {
   src: string;
@@ -37,6 +37,7 @@ export type ProjectCard = {
   tags: string[];
   accent: "teal" | "blue" | "rust" | "ink";
   ctaLabel: string;
+  homeTitle?: string;
   coverImage: ProjectVisual;
   gallery: ProjectVisual[];
   homeSpan?: string;
@@ -70,6 +71,9 @@ export const siteIdentity = {
   email: "luiszapata1998.lmpm@gmail.com",
   githubUrl: "https://github.com/LuisMartinParraMorales",
   githubLabel: "LuisMartinParraMorales",
+  linkedinUrl:
+    "https://www.linkedin.com/in/luis-martin-parra-morales-b85a6b160/",
+  linkedinLabel: "Luis Martin Parra Morales",
   requestCvUrl: buildGmailComposeUrl({
     to: "luiszapata1998.lmpm@gmail.com",
     subject: "Luis Parra CV",
@@ -77,7 +81,7 @@ export const siteIdentity = {
 };
 
 export const navigation: NavItem[] = [
-  { key: "luis-parra", label: "Luis Parra", route: "/" },
+  { key: "luis-parra", label: "Home", route: "/" },
   { key: "projects", label: "Projects", route: "/projects" },
   { key: "about", label: "About", route: "/about" },
   { key: "how-i-build", label: "How I Build", route: "/how-i-build" },
@@ -185,11 +189,11 @@ export const featuredProjects: ProjectCard[] = [
     accent: "blue",
     ctaLabel: "Read Argos case study",
     coverImage: {
-      src: "/images/projects/argos/cover-concept.png",
-      alt: "Concept visual for a possible Argos product surface.",
-      kind: "concept",
+      src: "/images/projects/argos/cover-visual-output.png",
+      alt: "Argos visual output showing a dense urban transit accessibility surface across London.",
+      kind: "visualization",
       caption:
-        "Concept visual used to communicate a possible Argos product surface. It is illustrative rather than shipped UI.",
+        "Updated Argos visual output showing the kind of network-scale accessibility surface the skimming workflow can produce.",
       objectPosition: "center center",
     },
     gallery: [
@@ -221,6 +225,7 @@ export const featuredProjects: ProjectCard[] = [
     tags: ["CUDA", "Runtime systems", "Appraisal", "Transport"],
     accent: "rust",
     ctaLabel: "Read NTAP case study",
+    homeTitle: "NTAP - National Transport Analysis Platform",
     coverImage: {
       src: "/images/projects/ntap/cover-ui.png",
       alt: "NTAP interface view illustrating a pub-sub workflow and operational controls.",
@@ -258,6 +263,7 @@ export const featuredProjects: ProjectCard[] = [
     tags: ["GCP", "Resilience", "Anomaly detection", "Public sector"],
     accent: "ink",
     ctaLabel: "Read CRDT case study",
+    homeTitle: "CRDT - Crisis Response and Resilience Digital Twin",
     coverImage: {
       src: "/images/projects/crdt/cover-ui.png",
       alt: "CRDT scenario modelling dashboard for resilience analysis.",
