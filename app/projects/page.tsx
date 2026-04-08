@@ -13,7 +13,7 @@ export default function ProjectsPage() {
           backLabel="Back to home projects summary"
           eyebrow="Detailed view"
           title="Four systems that show how I build."
-          summary="These case studies are where the engineering story is clearest: algorithms, ML systems, cloud runtimes, and product delivery shaped into tools people can use, inspect, and trust."
+          summary="These case studies show the engineering story most clearly: algorithms, ML systems, cloud runtimes, and product delivery shaped into tools people can use and trust."
         />
 
         <section className="grid gap-6">
