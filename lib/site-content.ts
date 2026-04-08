@@ -260,34 +260,34 @@ export const featuredProjects: ProjectCard[] = [
     organization: "Arup City Modelling Lab",
     period: "2024 - Present",
     summary:
-      "Performance-critical transport platform work spanning demand algorithms, appraisal workflows, and runtime-heavy engineering.",
+      "I helped turn a national transport forecasting workflow that used to take one to two days into a GPU-backed platform that can run scenarios in about ten minutes.",
     detailIntro:
-      "Platform-facing work on the UK’s National Transport Analysis Platform across demand, appraisal, and runtime-oriented system components.",
+      "I worked on NTAP as part of the shift from a slow, matrix-heavy national transport model into a GPU-backed platform for UK policy and project evaluation that can run scenarios in minutes instead of days.",
     problem:
-      "The platform needed heavy analytical components to run faster and more reliably without weakening maintainability, trust, or integration with appraisal workflows.",
+      "The Department for Transport needed more than a faster model run. Their workflow sat on a traditional four-stage demand model, with 72,250 by 72,250 matrices, more than 1,000 matrix reads and writes across a forecast, API-driven preprocessing, and TAG-based appraisal after the modelling stage. The existing VISSUM process took roughly one to two days per scenario, which made iteration, automation, and policy testing far slower than they needed to be.",
     contribution:
-      "Built CUDA-accelerated demand components, extended activity-model workflows, and implemented appraisal modules for transport decision making.",
+      "I was responsible for experimenting with parts of the new algorithmic stack, parallelising core demand components, and deploying them as microservices on GCP GPU infrastructure. That included CUDA-based work across generation, distribution, nested-logit mode choice, and post-processing, efficient service-to-service data exchange through Protocol Buffers, and productising appraisal code so data-science outputs could move through CI/CD and become usable platform services rather than one-off scripts.",
     signal:
-      "Shows computational depth, platform-facing engineering, and the ability to improve heavy analytical systems without losing trust or maintainability.",
-    tags: ["CUDA", "Runtime systems", "Appraisal", "Transport"],
+      "NTAP is one of the clearest examples of the kind of work I like most: taking heavy analytical logic, making it operationally credible, and doing it in a way that keeps client trust. The runtime gain mattered, but so did proving that a new model stack could be inspected, deployed, integrated with DfT data and appraisal workflows, and taken seriously by the people who depend on it.",
+    tags: ["GCP", "CUDA", "Microservices", "Appraisal"],
     accent: "rust",
     ctaLabel: "Read NTAP case study",
     homeTitle: "NTAP - National Transport Analysis Platform",
     coverImage: {
       src: "/images/projects/ntap/cover-ui.png",
-      alt: "NTAP interface view illustrating a pub-sub workflow and operational controls.",
+      alt: "NTAP runtime-facing interface illustrating service orchestration, messaging, and operational controls for model execution.",
       kind: "ui",
       caption:
-        "Operational view used to explain a pub-sub mechanism and runtime coordination inside NTAP.",
+        "Runtime-facing UI used to explain how model services, messaging, and execution states were coordinated inside NTAP.",
       objectPosition: "center top",
     },
     gallery: [
       {
         src: "/images/projects/ntap/architecture.png",
-        alt: "NTAP architecture diagram showing core services and runtime components.",
+        alt: "NTAP architecture diagram showing GPU-backed model services, APIs, data exchange, and appraisal components.",
         kind: "architecture",
         caption:
-          "Reference architecture for NTAP services, data flows, and runtime-oriented components.",
+          "Reference architecture showing how GPU-backed model components, APIs, and appraisal services were deployed as platform microservices instead of remaining isolated analytical code.",
       },
     ],
     homeSpan: "md:col-span-1 xl:col-span-1",
