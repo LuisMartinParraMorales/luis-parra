@@ -14,6 +14,11 @@ export type NavItem = {
   route: string;
 };
 
+export type SectionNavItem = {
+  id: string;
+  label: string;
+};
+
 export type ProjectVisualKind = "ui" | "architecture" | "concept" | "visualization";
 
 export type ProjectVisual = {
@@ -97,6 +102,48 @@ export const routeToSectionKey: Record<string, SectionKey> = {
   "/cv": "cv",
   "/contact": "contact",
 };
+
+export const homePageSectionNav: SectionNavItem[] = [
+  { id: "luis-parra", label: "Intro" },
+  { id: "projects", label: "Projects" },
+  { id: "about", label: "Profile" },
+  { id: "how-i-build", label: "How I Build" },
+  { id: "cv", label: "CV" },
+  { id: "contact", label: "Contact" },
+];
+
+export const projectsPageSectionNav: SectionNavItem[] = [
+  { id: "projects-overview", label: "Overview" },
+  { id: "polaris", label: "Polaris" },
+  { id: "argos", label: "Argos" },
+  { id: "ntap", label: "NTAP" },
+  { id: "crdt", label: "CRDT" },
+];
+
+export const aboutPageSectionNav: SectionNavItem[] = [
+  { id: "about-overview", label: "Overview" },
+  { id: "about-narrative", label: "Narrative" },
+  { id: "about-capabilities", label: "Capabilities" },
+];
+
+export const buildPageSectionNav: SectionNavItem[] = [
+  { id: "build-overview", label: "Overview" },
+  { id: "build-deployment", label: "Deployment" },
+  { id: "build-principles", label: "Principles" },
+];
+
+export const cvPageSectionNav: SectionNavItem[] = [
+  { id: "cv-overview", label: "Overview" },
+  { id: "cv-summary", label: "Summary" },
+  { id: "cv-experience", label: "Experience" },
+  { id: "cv-capabilities", label: "Capabilities" },
+  { id: "cv-education", label: "Education" },
+];
+
+export const contactPageSectionNav: SectionNavItem[] = [
+  { id: "contact-overview", label: "Overview" },
+  { id: "contact-channels", label: "Channels" },
+];
 
 export const heroContent = {
   eyebrow: "Backend systems, ML delivery, analytical products",

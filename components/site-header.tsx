@@ -6,7 +6,7 @@ import { navigation, siteIdentity } from "@/lib/site-content";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
-  const { activeSection, isHomePage } = useNavigationState();
+  const { currentPage } = useNavigationState();
 
   return (
     <header className="sticky top-0 z-30 pt-4">
@@ -22,13 +22,12 @@ export function SiteHeader() {
 
         <nav className="flex flex-wrap items-center gap-2">
           {navigation.map((item) => {
-            const href = isHomePage ? `#${item.key}` : item.route;
-            const isActive = activeSection === item.key;
+            const isActive = currentPage === item.key;
 
             return (
               <Link
                 key={item.key}
-                href={href}
+                href={item.route}
                 className={cn("nav-pill", isActive && "nav-pill-active")}
               >
                 {item.label}

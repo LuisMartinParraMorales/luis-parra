@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 type PageIntroProps = {
+  id?: string;
   eyebrow: string;
   title: string;
   summary: string;
@@ -9,6 +10,7 @@ type PageIntroProps = {
 };
 
 export function PageIntro({
+  id,
   eyebrow,
   title,
   summary,
@@ -16,7 +18,10 @@ export function PageIntro({
   backLabel = "Back to overview",
 }: PageIntroProps) {
   return (
-    <section className="page-intro rounded-[2rem] px-6 py-8 sm:px-10 sm:py-10">
+    <section
+      id={id}
+      className="page-intro scroll-mt-32 rounded-[2rem] px-6 py-8 sm:px-10 sm:py-10"
+    >
       {backHref ? (
         <Link
           href={backHref}

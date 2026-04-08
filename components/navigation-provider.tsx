@@ -12,6 +12,7 @@ import { routeToSectionKey, type SectionKey } from "@/lib/site-content";
 
 type NavigationContextValue = {
   activeSection: SectionKey;
+  currentPage: SectionKey;
   isHomePage: boolean;
 };
 
@@ -24,13 +25,14 @@ function getDefaultSection(pathname: string): SectionKey {
 export function NavigationProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const currentPage = getDefaultSection(pathname);
   const [activeSection, setActiveSection] = useState<SectionKey>(
-    getDefaultSection(pathname),
+    currentPage,
   );
 
   useEffect(() => {
-    setActiveSection(getDefaultSection(pathname));
-  }, [pathname]);
+    setActiveSection(currentPage);
+  }, [currentPage]);
 
   useEffect(() => {
     if (!isHomePage) {
@@ -76,7 +78,7 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
   }, [isHomePage, pathname]);
 
   return (
-    <NavigationContext.Provider value={{ activeSection, isHomePage }}>
+    <NavigationContext.Provider value={{ activeSection, currentPage, isHomePage }}>
       {children}
     </NavigationContext.Provider>
   );

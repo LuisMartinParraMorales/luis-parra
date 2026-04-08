@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ContactMethodCard } from "@/components/contact-method-card";
 import { HomeSection } from "@/components/home-section";
+import { PageWithLocalNav } from "@/components/page-with-local-nav";
 import { ProjectOverviewCard } from "@/components/project-overview-card";
 import {
   aboutHighlights,
@@ -14,6 +15,7 @@ import {
   education,
   experienceTimeline,
   featuredProjects,
+  homePageSectionNav,
   heroContent,
   projectsOverviewSummary,
   siteIdentity,
@@ -21,7 +23,8 @@ import {
 
 export default function Home() {
   return (
-    <div className="space-y-10 sm:space-y-12">
+    <PageWithLocalNav items={homePageSectionNav} title="Home sections">
+      <div className="space-y-10 sm:space-y-12">
       <HomeSection sectionKey="luis-parra" className="overflow-hidden">
         <div className="grid gap-8 xl:grid-cols-[1.3fr_0.8fr] xl:items-start">
           <div className="space-y-6">
@@ -258,6 +261,7 @@ export default function Home() {
           </div>
         </div>
       </HomeSection>
-    </div>
+      </div>
+    </PageWithLocalNav>
   );
 }
