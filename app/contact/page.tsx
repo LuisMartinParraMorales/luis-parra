@@ -14,6 +14,7 @@ export default function ContactPage() {
         <PageIntro
           id="contact-overview"
           backHref="/#contact"
+          backLabel="Back to home contact summary"
           eyebrow="Detailed view"
           title="The public contact layer is direct: email, public code, and a clear path to continue the conversation."
           summary={contactIntro}

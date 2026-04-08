@@ -13,6 +13,7 @@ export default function HowIBuildPage() {
         <PageIntro
           id="build-overview"
           backHref="/#how-i-build"
+          backLabel="Back to home build summary"
           eyebrow="Detailed view"
           title="The engineering bar stays high even when the work starts in spreadsheets, scripts, or prototypes."
           summary="This page is the operating logic behind the portfolio: start from the analytical core, choose the right runtime shape, make trust visible in the system, and use AI as an accelerator rather than a substitute for engineering discipline."

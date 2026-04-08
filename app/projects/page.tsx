@@ -10,6 +10,7 @@ export default function ProjectsPage() {
         <PageIntro
           id="projects-overview"
           backHref="/#projects"
+          backLabel="Back to home projects summary"
           eyebrow="Detailed view"
           title="Project case studies for the four strongest public proof points."
           summary="This page goes deeper than the homepage overview. Each case study expands the problem, what I built, and why the system matters, with visuals that make the architecture and product surface easier to inspect."

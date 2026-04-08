@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useNavigationState } from "@/components/navigation-provider";
 import type { SectionNavItem } from "@/lib/site-content";
 import { cn } from "@/lib/utils";
 
@@ -15,10 +16,15 @@ export function LocalSectionNav({
   title = "On this page",
   activeId,
 }: LocalSectionNavProps) {
+  const { activeSection, isHomePage } = useNavigationState();
   const [observedActiveId, setObservedActiveId] = useState(items[0]?.id ?? "");
+  const homePageActiveId =
+    isHomePage && items.some((item) => item.id === activeSection)
+      ? activeSection
+      : undefined;
 
   useEffect(() => {
-    if (activeId) {
+    if (activeId || homePageActiveId) {
       return;
     }
 
@@ -30,35 +36,67 @@ export function LocalSectionNav({
       return;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const next = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((left, right) => {
-            const leftDistance = Math.abs(left.boundingClientRect.top - 156);
-            const rightDistance = Math.abs(right.boundingClientRect.top - 156);
+    let frameId: number | null = null;
 
-            return leftDistance - rightDistance;
-          })[0];
+    const updateActiveSection = () => {
+      const anchor = 212;
+      const reachedSections = sections.filter(
+        (section) => section.getBoundingClientRect().top <= anchor,
+      );
 
-        if (!next?.target.id) {
-          return;
+      if (reachedSections.length > 0) {
+        const currentSection = reachedSections[reachedSections.length - 1];
+
+        if (currentSection) {
+          setObservedActiveId(currentSection.id);
         }
 
-        setObservedActiveId(next.target.id);
-      },
-      {
-        rootMargin: "-18% 0px -56% 0px",
-        threshold: [0.1, 0.2, 0.35, 0.55],
-      },
-    );
+        return;
+      }
 
-    sections.forEach((section) => observer.observe(section));
+      const nearestSection = sections.reduce((closest, section) => {
+        const distance = Math.abs(section.getBoundingClientRect().top - anchor);
 
-    return () => observer.disconnect();
-  }, [activeId, items]);
+        if (!closest) {
+          return { id: section.id, distance };
+        }
 
-  const currentId = activeId ?? observedActiveId;
+        return distance < closest.distance
+          ? { id: section.id, distance }
+          : closest;
+      }, null as { id: string; distance: number } | null);
+
+      if (nearestSection) {
+        setObservedActiveId(nearestSection.id);
+      }
+    };
+
+    const scheduleUpdate = () => {
+      if (frameId !== null) {
+        return;
+      }
+
+      frameId = window.requestAnimationFrame(() => {
+        frameId = null;
+        updateActiveSection();
+      });
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+    };
+  }, [activeId, homePageActiveId, items]);
+
+  const currentId = activeId ?? homePageActiveId ?? observedActiveId;
 
   if (items.length === 0) {
     return null;
@@ -102,10 +140,12 @@ export function LocalSectionNav({
         })}
       </nav>
 
-      <aside className="hidden lg:block">
-        <div className="local-nav-panel sticky top-28 rounded-[1.5rem] p-4">
+      <aside className="local-nav-rail hidden self-start lg:sticky lg:top-32 lg:block">
+        <div className="local-nav-panel rounded-[1.25rem] px-2.5 py-3">
           <p className="eyebrow">{title}</p>
-          <nav className="mt-4 space-y-2">{links}</nav>
+          <nav className="mt-3.5 space-y-1.5" aria-label={title}>
+            {links}
+          </nav>
         </div>
       </aside>
     </>

@@ -105,10 +105,10 @@ export const routeToSectionKey: Record<string, SectionKey> = {
 
 export const homePageSectionNav: SectionNavItem[] = [
   { id: "luis-parra", label: "Intro" },
-  { id: "projects", label: "Projects" },
-  { id: "about", label: "Profile" },
-  { id: "how-i-build", label: "How I Build" },
-  { id: "cv", label: "CV" },
+  { id: "projects", label: "Projects overview" },
+  { id: "about", label: "Profile summary" },
+  { id: "how-i-build", label: "Build summary" },
+  { id: "cv", label: "CV snapshot" },
   { id: "contact", label: "Contact" },
 ];
 

@@ -16,6 +16,7 @@ export default function CvPage() {
         <PageIntro
           id="cv-overview"
           backHref="/#cv"
+          backLabel="Back to home CV snapshot"
           eyebrow="Detailed view"
           title="Public CV summary"
           summary={cvSummary}

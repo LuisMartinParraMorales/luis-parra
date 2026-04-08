@@ -14,7 +14,7 @@ export function PageWithLocalNav({
   children,
 }: PageWithLocalNavProps) {
   return (
-    <div className="lg:grid lg:grid-cols-[14rem_minmax(0,1fr)] lg:items-start lg:gap-8 xl:grid-cols-[15rem_minmax(0,1fr)] xl:gap-10">
+    <div className="lg:grid lg:grid-cols-[11.25rem_minmax(0,1fr)] lg:items-start lg:gap-6 xl:grid-cols-[11.75rem_minmax(0,1fr)] xl:gap-7">
       <LocalSectionNav items={items} title={title} />
       <div className="min-w-0">{children}</div>
     </div>

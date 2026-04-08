@@ -23,7 +23,7 @@ import {
 
 export default function Home() {
   return (
-    <PageWithLocalNav items={homePageSectionNav} title="Home sections">
+    <PageWithLocalNav items={homePageSectionNav}>
       <div className="space-y-10 sm:space-y-12">
       <HomeSection sectionKey="luis-parra" className="overflow-hidden">
         <div className="grid gap-8 xl:grid-cols-[1.3fr_0.8fr] xl:items-start">

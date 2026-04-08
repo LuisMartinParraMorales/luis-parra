@@ -14,6 +14,7 @@ export default function AboutPage() {
         <PageIntro
           id="about-overview"
           backHref="/#about"
+          backLabel="Back to home profile summary"
           eyebrow="Detailed view"
           title="A backend-heavy software and ML profile shaped by analytical systems, not by generic tooling lists."
           summary="The through-line in the work is consistent: turn difficult analytical workflows into reliable products, services, and runtimes without stripping away the domain logic that makes them useful."
