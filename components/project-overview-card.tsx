@@ -29,7 +29,14 @@ export function ProjectOverviewCard({
   priority = false,
 }: ProjectOverviewCardProps) {
   return (
-    <article className={cn("project-card group rounded-[1.7rem] p-6", className)}>
+    <Link
+      href={`/projects#${project.id}`}
+      aria-label={project.ctaLabel}
+      className={cn(
+        "project-card group block cursor-pointer rounded-[1.7rem] p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/60 focus-visible:ring-offset-4 focus-visible:ring-offset-background",
+        className,
+      )}
+    >
       <div
         className={cn("accent-bar", accentClassByTone[project.accent])}
         aria-hidden="true"
@@ -75,11 +82,11 @@ export function ProjectOverviewCard({
       </div>
 
       <div className="mt-6">
-        <Link href={`/projects#${project.id}`} className="cta-link">
+        <span className="cta-link">
           <span>{project.ctaLabel}</span>
           <span aria-hidden="true">↗</span>
-        </Link>
+        </span>
       </div>
-    </article>
+    </Link>
   );
 }
