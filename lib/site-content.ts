@@ -121,9 +121,9 @@ export const homePageSectionNav: SectionNavItem[] = [
 export const projectsPageSectionNav: SectionNavItem[] = [
   { id: "projects-overview", label: "Overview" },
   { id: "polaris", label: "Polaris" },
-  { id: "argos", label: "Argos" },
   { id: "ntap", label: "NTAP" },
   { id: "crdt", label: "CRDT" },
+  { id: "argos", label: "Argos" },
 ];
 
 export const aboutPageSectionNav: SectionNavItem[] = [
@@ -226,45 +226,6 @@ export const featuredProjects: ProjectCard[] = [
     homeSpan: "md:col-span-2 xl:col-span-2",
   },
   {
-    id: "argos",
-    title: "Argos",
-    organization: "Arup City Modelling Lab",
-    period: "2024 - Present",
-    summary:
-      "I helped turn raw GTFS feeds into a reproducible skimming engine that builds a unified transit graph, runs parallel shortest paths, and produces OD matrices analysts can reuse.",
-    detailIntro:
-      "Argos is an open-source transit skimming engine built to turn raw GTFS feeds into reusable generalised-cost matrices and accessibility outputs. Instead of rebuilding feed-specific notebooks every time a network changed, the system gives analysts a structured batch pipeline with explicit stages, inspectable artifacts, and a graph solver shaped for transport-scale shortest-path work.",
-    problem:
-      "Transit analysts needed more than another script that happened to work on one feed. They needed a repeatable way to go from GTFS inputs, projected origins and destinations, and a validated config into origin-destination skim matrices that could support accessibility and generalised-cost analysis across different networks. Without that, each new study risked turning back into a custom notebook or a brittle chain of feed-specific preprocessing steps.",
-    contribution:
-      "I worked on the parts of the pipeline where transport logic and software structure had to line up cleanly. That included graph construction, spatial connector generation, shortest-path workflows, output extensions, and the CLI shape that orchestrates the stages. The system diagram captures that architecture well: a thin CLI entrypoint loads validated config, preprocessing reduces the GTFS problem early and persists filtered parquet outputs, connector stages build access, egress, and transfer links with KDTree-based spatial search, and the graph stage assembles a unified transit network before running parallel shortest-path searches to produce the final OD skim matrix. I also worked on the shared contracts and regression-tested behaviour so the pipeline stayed inspectable, rerunnable, and reliable as the product evolved.",
-    challenge:
-      "What made Argos interesting was that performance was only half the job. The graph solve is the expensive stage, but the architectural quality comes from what happens around it: reducing problem size early, keeping parquet artifacts between stages, and making each step inspectable enough that analysts can rerun or debug one part without reopening the whole GTFS feed. That is a small-system version of the product taste I care about most.",
-    signal:
-      "Argos is a strong public proof point because it shows algorithmic depth and engineering taste in the same place: GTFS preprocessing, spatial connector logic, graph assembly, shortest-path solving, and an open-source workflow that is explicit enough to trust. It is the kind of transport-software work that looks simple from the outside and turns out to reward careful systems thinking underneath.",
-    tags: ["Python", "GTFS", "Graph algorithms", "CLI"],
-    accent: "blue",
-    ctaLabel: "Read Argos case study",
-    coverImage: {
-      src: "/images/projects/argos/cover-visual-output.png",
-      alt: "Argos visual output showing a dense urban transit accessibility surface across London.",
-      kind: "visualization",
-      caption:
-        "Updated Argos visual output showing the kind of network-scale accessibility surface the skimming workflow can produce.",
-      objectPosition: "center center",
-    },
-    gallery: [
-      {
-        src: "/images/projects/argos/diagram.png",
-        alt: "Argos system diagram showing the staged GTFS skimming pipeline from inputs and CLI orchestration into preprocessing, connectors, graph solving, and the final OD skim matrix.",
-        kind: "diagram",
-        caption:
-          "System diagram showing how validated config, GTFS inputs, staged parquet artifacts, connector generation, and graph solving come together in the Argos skimming pipeline.",
-      },
-    ],
-    homeSpan: "md:col-span-1 xl:col-span-1",
-  },
-  {
     id: "ntap",
     title: "NTAP",
     organization: "Arup City Modelling Lab",
@@ -343,6 +304,45 @@ export const featuredProjects: ProjectCard[] = [
       },
     ],
     homeSpan: "md:col-span-2 xl:col-span-2",
+  },
+  {
+    id: "argos",
+    title: "Argos",
+    organization: "Arup City Modelling Lab",
+    period: "2024 - Present",
+    summary:
+      "I helped turn raw GTFS feeds into a reproducible skimming engine that builds a unified transit graph, runs parallel shortest paths, and produces OD matrices analysts can reuse.",
+    detailIntro:
+      "Argos is an open-source transit skimming engine built to turn raw GTFS feeds into reusable generalised-cost matrices and accessibility outputs. Instead of rebuilding feed-specific notebooks every time a network changed, the system gives analysts a structured batch pipeline with explicit stages, inspectable artifacts, and a graph solver shaped for transport-scale shortest-path work.",
+    problem:
+      "Transit analysts needed more than another script that happened to work on one feed. They needed a repeatable way to go from GTFS inputs, projected origins and destinations, and a validated config into origin-destination skim matrices that could support accessibility and generalised-cost analysis across different networks. Without that, each new study risked turning back into a custom notebook or a brittle chain of feed-specific preprocessing steps.",
+    contribution:
+      "I worked on the parts of the pipeline where transport logic and software structure had to line up cleanly. That included graph construction, spatial connector generation, shortest-path workflows, output extensions, and the CLI shape that orchestrates the stages. The system diagram captures that architecture well: a thin CLI entrypoint loads validated config, preprocessing reduces the GTFS problem early and persists filtered parquet outputs, connector stages build access, egress, and transfer links with KDTree-based spatial search, and the graph stage assembles a unified transit network before running parallel shortest-path searches to produce the final OD skim matrix. I also worked on the shared contracts and regression-tested behaviour so the pipeline stayed inspectable, rerunnable, and reliable as the product evolved.",
+    challenge:
+      "What made Argos interesting was that performance was only half the job. The graph solve is the expensive stage, but the architectural quality comes from what happens around it: reducing problem size early, keeping parquet artifacts between stages, and making each step inspectable enough that analysts can rerun or debug one part without reopening the whole GTFS feed. That is a small-system version of the product taste I care about most.",
+    signal:
+      "Argos is a strong public proof point because it shows algorithmic depth and engineering taste in the same place: GTFS preprocessing, spatial connector logic, graph assembly, shortest-path solving, and an open-source workflow that is explicit enough to trust. It is the kind of transport-software work that looks simple from the outside and turns out to reward careful systems thinking underneath.",
+    tags: ["Python", "GTFS", "Graph algorithms", "CLI"],
+    accent: "blue",
+    ctaLabel: "Read Argos case study",
+    coverImage: {
+      src: "/images/projects/argos/cover-visual-output.png",
+      alt: "Argos visual output showing a dense urban transit accessibility surface across London.",
+      kind: "visualization",
+      caption:
+        "Updated Argos visual output showing the kind of network-scale accessibility surface the skimming workflow can produce.",
+      objectPosition: "center center",
+    },
+    gallery: [
+      {
+        src: "/images/projects/argos/diagram.png",
+        alt: "Argos system diagram showing the staged GTFS skimming pipeline from inputs and CLI orchestration into preprocessing, connectors, graph solving, and the final OD skim matrix.",
+        kind: "diagram",
+        caption:
+          "System diagram showing how validated config, GTFS inputs, staged parquet artifacts, connector generation, and graph solving come together in the Argos skimming pipeline.",
+      },
+    ],
+    homeSpan: "md:col-span-1 xl:col-span-1",
   },
 ];
 
