@@ -25,6 +25,7 @@ const accentClassByTone: Record<ProjectCard["accent"], string> = {
 const visualLabelByKind: Record<ProjectVisualKind, string> = {
   ui: "UI",
   architecture: "Architecture",
+  diagram: "Diagram",
   concept: "Concept visual",
   visualization: "Visual output",
 };
@@ -42,7 +43,9 @@ function ProjectVisualFigure({
   priority?: boolean;
 }) {
   const imageClassName =
-    visual.kind === "architecture" ? "object-contain p-4" : "object-cover";
+    visual.kind === "architecture" || visual.kind === "diagram"
+      ? "object-contain p-4"
+      : "object-cover";
 
   const handleInspect = (event: MouseEvent<HTMLButtonElement>) => {
     onInspect(visual, event.currentTarget);
@@ -97,7 +100,9 @@ export function ProjectCaseStudy({
   ) => {
     lastTriggerRef.current = trigger;
     setSelectedVisual(visual);
-    setZoom(visual.kind === "architecture" ? 1.15 : 1);
+    setZoom(
+      visual.kind === "architecture" || visual.kind === "diagram" ? 1.15 : 1,
+    );
   };
 
   const closeLightbox = () => {

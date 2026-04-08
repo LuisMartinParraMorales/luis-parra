@@ -19,6 +19,7 @@ const accentClassByTone: Record<ProjectCard["accent"], string> = {
 const visualLabelByKind: Record<ProjectVisualKind, string> = {
   ui: "UI",
   architecture: "Architecture",
+  diagram: "Diagram",
   concept: "Concept visual",
   visualization: "Visual output",
 };

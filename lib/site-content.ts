@@ -19,7 +19,12 @@ export type SectionNavItem = {
   label: string;
 };
 
-export type ProjectVisualKind = "ui" | "architecture" | "concept" | "visualization";
+export type ProjectVisualKind =
+  | "ui"
+  | "architecture"
+  | "diagram"
+  | "concept"
+  | "visualization";
 
 export type ProjectVisual = {
   src: string;
@@ -179,16 +184,18 @@ export const featuredProjects: ProjectCard[] = [
     organization: "World Bank",
     period: "2025 - 2026",
     summary:
-      "AI/ML decision-support platform for infrastructure prioritisation in data-scarce countries.",
+      "I rebuilt a fragile spreadsheet-and-Streamlit workflow for Ukraine reconstruction into a cloud product where analysts can inspect data, tune scenarios, and rank infrastructure priorities with confidence.",
     detailIntro:
-      "A full-stack platform that turned fragmented global, administrative, and satellite-derived data into investment signals inside a usable prioritisation workflow.",
+      "Polaris started from scripts, spreadsheets, geospatial layers, and a single-file Streamlit prototype used in Ukraine's education reconstruction prioritisation work. As the only full-stack engineer on the alpha, I rebuilt that into a React and Python platform with a guided workspace, explicit service contracts, and an AWS architecture that could support internal analysts without exposing the underlying analytical mess.",
     problem:
-      "Prioritisation teams needed a credible way to combine geospatial evidence, ML signals, and infrastructure context without relying on brittle prototype-heavy analysis.",
+      "The World Bank team already had real analytical value, but it lived in a fragile shape: Python scripts, spreadsheets, GIS rasters and shapefiles, processed Excel workbooks, and a Streamlit explorer over prepared outputs. Analysts could inspect results, but the workflow was still pre-production: hard to run, hard to explain, difficult to extend across countries and datasets, and too dependent on manual handling.",
     contribution:
-      "Delivered the product stack across ML and geospatial microservices, typed APIs, scheduled and event-driven pipelines, and a React-based map interface.",
+      "I owned the alpha end to end and implemented the full product architecture around the prioritisation workflow. I built the React and TypeScript workspace for workbook upload, inspection, scenario weighting, map outputs, ranked institutions, and oblast summaries, then connected it to an AWS architecture I delivered across the stack: CloudFront and S3 for the web experience, Cognito for access control, an Application Load Balancer in front of ECS on Fargate services, dedicated S3 layers for raw uploads, reference data, processor outputs, and processed workbooks, DynamoDB for job metadata and status, EventBridge and Lambda for scheduled harvesting, Step Functions for orchestration, ECR for container images, Secrets Manager for secrets, and CloudWatch for logs and monitoring. That architecture let the product move beyond a prototype explorer into a cloud-deployed system with explicit processing stages, shared intermediate data, and a cleaner path for new analytical modules.",
+    challenge:
+      "The hard part was not only full-stack ownership. I used AI-assisted engineering to move fast enough for an alpha, but this was not a context where speed could come at the expense of trust. The tool was being shaped for Ukraine and other war-affected contexts, so deployment had to account for authentication, edge exposure, and the risk of hostile access. At the same time, I still needed behavioral parity with the existing prototype, which meant explicit specs, locked parity scenarios, and tests rather than letting the implementation drift.",
     signal:
-      "Shows full-stack delivery, cloud deployment, typed services, and productisation of a previously prototype-heavy workflow.",
-    tags: ["AWS", "React", "Geospatial", "Decision support"],
+      "Polaris is one of the clearest examples of the profile I want to put forward: taking a messy analytical workflow, owning the frontend and backend together, and turning it into a product that feels credible. It shows productisation, AWS architecture, API design, parity validation, and the judgment to combine AI-assisted speed with real engineering discipline.",
+    tags: ["AWS", "React", "ECS/Fargate", "Step Functions"],
     accent: "teal",
     ctaLabel: "Read Polaris case study",
     coverImage: {
@@ -196,7 +203,7 @@ export const featuredProjects: ProjectCard[] = [
       alt: "Polaris prioritisation workspace after loading a workbook, showing scope weights, ranked indicators, map outputs, and grouped comparisons.",
       kind: "ui",
       caption:
-        "Loaded workspace view showing scoped indicators, weighted ranking, spatial outputs, and grouped comparisons in one workflow.",
+        "Loaded workspace showing workbook inspection, scope and weight controls, map outputs, ranked institutions, and grouped comparisons in one analyst workflow.",
       objectPosition: "center top",
     },
     gallery: [
@@ -205,7 +212,7 @@ export const featuredProjects: ProjectCard[] = [
         alt: "Polaris workspace before a workbook is loaded, showing the zero-state prioritisation canvas and guide panels.",
         kind: "ui",
         caption:
-          "Zero-state workspace before a workbook is loaded, clarifying how the prioritisation canvas activates.",
+          "Zero-state workspace showing the guided analyst flow before a workbook is loaded and the scoring canvas activates.",
         objectPosition: "center top",
       },
       {
@@ -213,7 +220,7 @@ export const featuredProjects: ProjectCard[] = [
         alt: "AWS architecture diagram for Polaris microservices and data workflow.",
         kind: "architecture",
         caption:
-          "Reference AWS architecture showing the service and data workflow behind Polaris.",
+          "Reference AWS architecture showing CloudFront, S3, Cognito, ALB, ECS on Fargate, DynamoDB, EventBridge, Lambda, Step Functions, ECR, Secrets Manager, and CloudWatch around the Polaris processing workflow.",
       },
     ],
     homeSpan: "md:col-span-2 xl:col-span-2",
@@ -224,16 +231,18 @@ export const featuredProjects: ProjectCard[] = [
     organization: "Arup City Modelling Lab",
     period: "2024 - Present",
     summary:
-      "Open-source GTFS skimming engine for generalized-cost analysis and reusable accessibility outputs.",
+      "I helped turn raw GTFS feeds into a reproducible skimming engine that builds a unified transit graph, runs parallel shortest paths, and produces OD matrices analysts can reuse.",
     detailIntro:
-      "An open-source transit skimming engine that turns GTFS feeds into reusable accessibility and generalised-cost outputs.",
+      "Argos is an open-source transit skimming engine built to turn raw GTFS feeds into reusable generalised-cost matrices and accessibility outputs. Instead of rebuilding feed-specific notebooks every time a network changed, the system gives analysts a structured batch pipeline with explicit stages, inspectable artifacts, and a graph solver shaped for transport-scale shortest-path work.",
     problem:
-      "Analysts needed reproducible skims and accessibility outputs without rebuilding custom notebooks and feed-specific scripts for every new network.",
+      "Transit analysts needed more than another script that happened to work on one feed. They needed a repeatable way to go from GTFS inputs, projected origins and destinations, and a validated config into origin-destination skim matrices that could support accessibility and generalised-cost analysis across different networks. Without that, each new study risked turning back into a custom notebook or a brittle chain of feed-specific preprocessing steps.",
     contribution:
-      "Worked on graph construction, spatial connector generation, shortest-path workflows, output extensions, and regression-tested CLI tooling for generalized-cost analysis.",
+      "I worked on the parts of the pipeline where transport logic and software structure had to line up cleanly. That included graph construction, spatial connector generation, shortest-path workflows, output extensions, and the CLI shape that orchestrates the stages. The system diagram captures that architecture well: a thin CLI entrypoint loads validated config, preprocessing reduces the GTFS problem early and persists filtered parquet outputs, connector stages build access, egress, and transfer links with KDTree-based spatial search, and the graph stage assembles a unified transit network before running parallel shortest-path searches to produce the final OD skim matrix. I also worked on the shared contracts and regression-tested behaviour so the pipeline stayed inspectable, rerunnable, and reliable as the product evolved.",
+    challenge:
+      "What made Argos interesting was that performance was only half the job. The graph solve is the expensive stage, but the architectural quality comes from what happens around it: reducing problem size early, keeping parquet artifacts between stages, and making each step inspectable enough that analysts can rerun or debug one part without reopening the whole GTFS feed. That is a small-system version of the product taste I care about most.",
     signal:
-      "Shows algorithmic depth, open-source proof, transport-network reasoning, and correctness-focused engineering.",
-    tags: ["GTFS", "Graph algorithms", "Open source", "Python"],
+      "Argos is a strong public proof point because it shows algorithmic depth and engineering taste in the same place: GTFS preprocessing, spatial connector logic, graph assembly, shortest-path solving, and an open-source workflow that is explicit enough to trust. It is the kind of transport-software work that looks simple from the outside and turns out to reward careful systems thinking underneath.",
+    tags: ["Python", "GTFS", "Graph algorithms", "CLI"],
     accent: "blue",
     ctaLabel: "Read Argos case study",
     coverImage: {
@@ -246,11 +255,11 @@ export const featuredProjects: ProjectCard[] = [
     },
     gallery: [
       {
-        src: "/images/projects/argos/architecture.png",
-        alt: "Argos architecture diagram for GTFS ingestion and skimming workflow.",
-        kind: "architecture",
+        src: "/images/projects/argos/diagram.png",
+        alt: "Argos system diagram showing the staged GTFS skimming pipeline from inputs and CLI orchestration into preprocessing, connectors, graph solving, and the final OD skim matrix.",
+        kind: "diagram",
         caption:
-          "Reference architecture for GTFS ingest, skimming workflow, and output generation.",
+          "System diagram showing how validated config, GTFS inputs, staged parquet artifacts, connector generation, and graph solving come together in the Argos skimming pipeline.",
       },
     ],
     homeSpan: "md:col-span-1 xl:col-span-1",
@@ -272,7 +281,7 @@ export const featuredProjects: ProjectCard[] = [
       "The hard part was not only speed. We were replacing a trusted national modelling workflow, so the new stack had to earn confidence as well as runtime gains. That meant making the services inspectable, deployable, and operationally credible while the analytical logic was being reworked underneath.",
     signal:
       "NTAP is one of the clearest examples of the kind of work I like most: taking heavy analytical logic, combining transport-modelling depth with strong software engineering, and turning it into a platform people can actually run and trust. The result was not just faster code. It was a new operational shape for national scenario modelling, with GPU services, CUDA acceleration, and appraisal components that could live inside a real CI/CD-driven platform.",
-    tags: ["GCP", "CUDA", "CI/CD", "Microservices"],
+    tags: ["GCP", "CUDA", "Protocol Buffers", "CI/CD"],
     accent: "rust",
     ctaLabel: "Read NTAP case study",
     homeTitle: "NTAP - National Transport Analysis Platform",
@@ -301,16 +310,18 @@ export const featuredProjects: ProjectCard[] = [
     organization: "Arup City Modelling Lab",
     period: "2024 - Present",
     summary:
-      "Resilience platform combining real-time multimodal data, anomaly detection, and scenario analysis for crisis response.",
+      "An alpha resilience platform that links live transport, hazard, and population signals to anomaly detection, graph reasoning, and mitigation scenario generation.",
     detailIntro:
-      "A public-sector resilience platform that brings live multimodal data, incident logic, anomaly detection, and scenario analysis into one operational workflow.",
+      "CRDT is an alpha Crisis Response and Resilience Digital Twin built to move from live incident signals into scenario testing and alerting inside one operational system. Instead of treating monitoring, anomaly detection, and mitigation planning as separate tools, the platform ties them together through a transport-ontology context core so users can inspect what is happening now and explore what to do next.",
     problem:
-      "Operational users needed one environment to move from live data and incident context into scenario exploration without jumping across disconnected tools.",
+      "Operational users did not just need another dashboard. They needed one system that could ingest demand, network, hazard, and novel data; maintain shared transport context in a knowledge graph; classify incidents and anomalies; estimate network and population impacts; and generate mitigation scenarios without forcing analysts to stitch together disconnected workflows by hand.",
     contribution:
-      "Contributed to backend and cloud-facing components that supported ingestion, AI/ML workflows, and decision-support services in GCP-oriented delivery.",
+      "My scope sat in the service layer that made the alpha operational. I owned the data harvesters for demand, hazard, and novel data end to end, packaging them as containerised microservices, publishing images through Artifact Registry, and deploying them onto Cloud Run so the platform could pull live and reference data on scheduled and on-demand paths. On the ML side I worked on anomaly-detection experimentation, then productised the selected model as a managed Vertex AI service with CI/CD into GCP so detection logic could be versioned, deployed, and invoked as part of the platform rather than living in notebooks. I also built graph-algorithm services as microservices on the same Artifact Registry to Cloud Run path and worked on the GenAI component behind the mitigation scenario generator. Together those services supported the Neo4j context core and the jump from incident detection into scenario generation, impact analysis, and alerting.",
+    challenge:
+      "What made the work hard was turning a wide system diagram into a real alpha without collapsing it into a demo. CRDT combined live data ingestion, a knowledge-graph core, graph algorithms, anomaly detection, flood and transport impact modelling, and experimental GenAI. Each part wanted a different runtime shape, so the engineering problem was deciding what should run as a managed ML service, what should run as container microservices, and how to keep the experimental pieces clearly separated from the operational core.",
     signal:
-      "Shows cloud-aware backend work in a digital-twin-style public-sector system where data flows, scenarios, and operational trust all matter.",
-    tags: ["GCP", "Resilience", "Anomaly detection", "Public sector"],
+      "CRDT shows the combination of backend engineering, ML engineering, and graph-based systems work that I want to be known for: live data services, managed ML deployment, graph computation, and decision-support product thinking in a public-sector resilience setting. It is a good example of building an alpha that is already system-shaped rather than notebook-shaped.",
+    tags: ["Cloud Run", "Vertex AI", "Neo4j", "GenAI"],
     accent: "ink",
     ctaLabel: "Read CRDT case study",
     homeTitle: "CRDT - Crisis Response and Resilience Digital Twin",
@@ -324,11 +335,11 @@ export const featuredProjects: ProjectCard[] = [
     },
     gallery: [
       {
-        src: "/images/projects/crdt/architecture.png",
-        alt: "CRDT reference architecture diagram for data ingestion and decision-support services.",
-        kind: "architecture",
+        src: "/images/projects/crdt/diagram.png",
+        alt: "CRDT system diagram showing the knowledge-graph core, incident detection, scenario modelling, and alerting flows.",
+        kind: "diagram",
         caption:
-          "Reference architecture for ingestion, analytics, and decision-support services behind CRDT.",
+          "System diagram showing how demand, network, hazard, and novel data flow through a Neo4j context core into incident detection, scenario modelling, mitigation generation, and alerting.",
       },
     ],
     homeSpan: "md:col-span-2 xl:col-span-2",
