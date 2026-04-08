@@ -38,6 +38,7 @@ export type ProjectCard = {
   detailIntro: string;
   problem: string;
   contribution: string;
+  challenge?: string;
   signal: string;
   tags: string[];
   accent: "teal" | "blue" | "rust" | "ink";
@@ -260,16 +261,18 @@ export const featuredProjects: ProjectCard[] = [
     organization: "Arup City Modelling Lab",
     period: "2024 - Present",
     summary:
-      "I helped turn a national transport forecasting workflow that used to take one to two days into a GPU-backed platform that can run scenarios in about ten minutes.",
+      "I helped turn a national transport forecasting workflow from one to two days per scenario into a GPU-backed platform that can run in about ten minutes.",
     detailIntro:
-      "I worked on NTAP as part of the shift from a slow, matrix-heavy national transport model into a GPU-backed platform for UK policy and project evaluation that can run scenarios in minutes instead of days.",
+      "NTAP is the Department for Transport's new National Transport Analysis Platform. I worked across the modelling and platform layers that moved a slow, matrix-heavy national workflow into a GPU-backed system for scenario testing, appraisal, and faster policy evaluation.",
     problem:
-      "The Department for Transport needed more than a faster model run. Their workflow sat on a traditional four-stage demand model, with 72,250 by 72,250 matrices, more than 1,000 matrix reads and writes across a forecast, API-driven preprocessing, and TAG-based appraisal after the modelling stage. The existing VISSUM process took roughly one to two days per scenario, which made iteration, automation, and policy testing far slower than they needed to be.",
+      "The baseline workflow ran the transport model itself in VISSUM through the traditional four stages: trip generation, distribution, mode choice, and assignment. At NTAP scale that meant 72,250 by 72,250 matrices and more than 1,000 matrix reads and writes across a forecast, with a single scenario taking one to two days. Preprocessing and TAG-based appraisal then sat outside the model as separate analyst-heavy tools, which meant the full workflow was not only slow but also fragmented and manual.",
     contribution:
-      "I was responsible for experimenting with parts of the new algorithmic stack, parallelising core demand components, and deploying them as microservices on GCP GPU infrastructure. That included CUDA-based work across generation, distribution, nested-logit mode choice, and post-processing, efficient service-to-service data exchange through Protocol Buffers, and productising appraisal code so data-science outputs could move through CI/CD and become usable platform services rather than one-off scripts.",
+      "I worked where algorithmic performance and software engineering had to meet. I experimented with parts of the new demand-model stack, parallelised core stages with CUDA, and deployed them as microservices on GCP GPU infrastructure. That covered generation over a synthetic population, gravity-based trip distribution, nested-logit mode choice, and parallelised post-processing, with Protocol Buffers handling efficient service-to-service data exchange. The platform also introduced API-driven preprocessing and TAG-based appraisal around the modelling stage, and I helped productise appraisal code with CI/CD so it could run as part of the platform instead of living as one-off analysis.",
+    challenge:
+      "The hard part was not only speed. We were replacing a trusted national modelling workflow, so the new stack had to earn confidence as well as runtime gains. That meant making the services inspectable, deployable, and operationally credible while the analytical logic was being reworked underneath.",
     signal:
-      "NTAP is one of the clearest examples of the kind of work I like most: taking heavy analytical logic, making it operationally credible, and doing it in a way that keeps client trust. The runtime gain mattered, but so did proving that a new model stack could be inspected, deployed, integrated with DfT data and appraisal workflows, and taken seriously by the people who depend on it.",
-    tags: ["GCP", "CUDA", "Microservices", "Appraisal"],
+      "NTAP is one of the clearest examples of the kind of work I like most: taking heavy analytical logic, combining transport-modelling depth with strong software engineering, and turning it into a platform people can actually run and trust. The result was not just faster code. It was a new operational shape for national scenario modelling, with GPU services, CUDA acceleration, and appraisal components that could live inside a real CI/CD-driven platform.",
+    tags: ["GCP", "CUDA", "CI/CD", "Microservices"],
     accent: "rust",
     ctaLabel: "Read NTAP case study",
     homeTitle: "NTAP - National Transport Analysis Platform",
@@ -278,7 +281,7 @@ export const featuredProjects: ProjectCard[] = [
       alt: "NTAP runtime-facing interface illustrating service orchestration, messaging, and operational controls for model execution.",
       kind: "ui",
       caption:
-        "Runtime-facing UI used to explain how model services, messaging, and execution states were coordinated inside NTAP.",
+        "Runtime-facing UI used to explain how model services, orchestration, and execution states were coordinated inside NTAP.",
       objectPosition: "center top",
     },
     gallery: [
@@ -287,7 +290,7 @@ export const featuredProjects: ProjectCard[] = [
         alt: "NTAP architecture diagram showing GPU-backed model services, APIs, data exchange, and appraisal components.",
         kind: "architecture",
         caption:
-          "Reference architecture showing how GPU-backed model components, APIs, and appraisal services were deployed as platform microservices instead of remaining isolated analytical code.",
+          "Reference architecture showing how GPU-backed model components, APIs, and appraisal services were deployed as platform microservices rather than remaining isolated analytical code.",
       },
     ],
     homeSpan: "md:col-span-1 xl:col-span-1",

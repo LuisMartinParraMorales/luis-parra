@@ -12,8 +12,8 @@ export default function ProjectsPage() {
           backHref="/#projects"
           backLabel="Back to home projects summary"
           eyebrow="Detailed view"
-          title="Project case studies for the four strongest public proof points."
-          summary="This page goes deeper than the homepage overview. Each case study expands the problem, what I built, and why the system matters, with visuals that make the architecture and product surface easier to inspect."
+          title="Four systems that show how I build."
+          summary="These case studies are where the engineering story is clearest: algorithms, ML systems, cloud runtimes, and product delivery shaped into tools people can use, inspect, and trust."
         />
 
         <section className="grid gap-6">

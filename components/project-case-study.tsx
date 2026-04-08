@@ -86,6 +86,7 @@ export function ProjectCaseStudy({
   project,
   priority = false,
 }: ProjectCaseStudyProps) {
+  const projectVisuals = [project.coverImage, ...project.gallery];
   const [selectedVisual, setSelectedVisual] = useState<ProjectVisual | null>(null);
   const [zoom, setZoom] = useState(1);
   const lastTriggerRef = useRef<HTMLButtonElement | null>(null);
@@ -175,12 +176,17 @@ export function ProjectCaseStudy({
           </div>
         </div>
 
-        <div className="mt-8 grid gap-6 xl:grid-cols-[1.1fr_0.9fr] xl:items-start">
-          <ProjectVisualFigure
-            visual={project.coverImage}
-            priority={priority}
-            onInspect={openVisual}
-          />
+        <div className="mt-8 grid gap-6 xl:grid-cols-[1.08fr_0.92fr] xl:items-start">
+          <div className="space-y-6">
+            {projectVisuals.map((visual, index) => (
+              <ProjectVisualFigure
+                key={`${project.id}-${visual.src}`}
+                visual={visual}
+                priority={priority && index === 0}
+                onInspect={openVisual}
+              />
+            ))}
+          </div>
 
           <div className="grid gap-4">
             <article className="info-card rounded-[1.4rem] p-5">
@@ -195,6 +201,14 @@ export function ProjectCaseStudy({
                 {project.contribution}
               </p>
             </article>
+            {project.challenge ? (
+              <article className="info-card rounded-[1.4rem] p-5">
+                <p className="eyebrow">What made it hard</p>
+                <p className="mt-3 text-base leading-8 text-foreground/92">
+                  {project.challenge}
+                </p>
+              </article>
+            ) : null}
             <article className="info-card rounded-[1.4rem] p-5">
               <p className="eyebrow">Why it matters</p>
               <p className="mt-3 text-base leading-8 text-foreground/92">
@@ -203,18 +217,6 @@ export function ProjectCaseStudy({
             </article>
           </div>
         </div>
-
-        {project.gallery.length > 0 ? (
-          <div className="mt-8 grid gap-6 lg:grid-cols-2">
-            {project.gallery.map((visual) => (
-              <ProjectVisualFigure
-                key={`${project.id}-${visual.src}`}
-                visual={visual}
-                onInspect={openVisual}
-              />
-            ))}
-          </div>
-        ) : null}
       </article>
 
       {selectedVisual ? (
