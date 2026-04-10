@@ -77,6 +77,11 @@ export type BuildPractice = {
   body: string;
 };
 
+export type ProfilePhoto = {
+  src: string;
+  alt: string;
+};
+
 export const siteIdentity = {
   name: "Luis Parra",
   title: "Software & ML Engineer",
@@ -86,6 +91,8 @@ export const siteIdentity = {
   email: "luiszapata1998.lmpm@gmail.com",
   githubUrl: "https://github.com/LuisMartinParraMorales",
   githubLabel: "LuisMartinParraMorales",
+  portfolioRepoUrl: "https://github.com/LuisMartinParraMorales/luis-parra",
+  portfolioRepoLabel: "Browse this portfolio repo on GitHub",
   linkedinUrl:
     "https://www.linkedin.com/in/luis-martin-parra-morales-b85a6b160/",
   linkedinLabel: "Luis Martin Parra Morales",
@@ -94,6 +101,11 @@ export const siteIdentity = {
     to: "luiszapata1998.lmpm@gmail.com",
     subject: "Luis Parra CV",
   }),
+};
+
+export const profilePhoto: ProfilePhoto = {
+  src: "/images/profile/luis-parra-imperial-college.jpg",
+  alt: "Portrait of Luis Parra in London.",
 };
 
 export const navigation: NavItem[] = [
@@ -152,6 +164,8 @@ export const heroContent = {
   eyebrow: "Backend systems, ML engineering, analytical products",
   intro:
     "I build backend-heavy software and ML systems that turn complex analytical logic into products people can actually use, inspect, and trust. The domains change, but the pattern stays the same: make the workflow explicit, choose the right runtime, and ship something credible.",
+  repoSignal:
+    "This portfolio is part of the work too. The code is public because I like showing how things are put together, not only how they look once they're finished.",
   signalCards: [
     {
       title: "Current focus",

@@ -10,8 +10,17 @@ test.describe("portfolio site", () => {
       page.getByRole("heading", { name: "Software & ML Engineer" }),
     ).toBeVisible();
     await expect(
+      page.getByAltText("Portrait of Luis Parra in London."),
+    ).toBeVisible();
+    await expect(
       page.getByRole("navigation").getByRole("link", { name: "Home" }),
     ).toHaveAttribute("href", "/");
+    await expect(
+      page.getByRole("link", { name: "Browse this portfolio repo on GitHub" }),
+    ).toHaveAttribute(
+      "href",
+      "https://github.com/LuisMartinParraMorales/luis-parra",
+    );
 
     await page.getByRole("link", { name: "Explore flagship projects" }).click();
     await expect(
