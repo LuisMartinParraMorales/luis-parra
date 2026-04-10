@@ -154,15 +154,15 @@ export const heroContent = {
   signalCards: [
     {
       title: "Current focus",
-      body: "Turning complex analytical and algorithmic workflows into production-grade systems with backend services, ML components, and interfaces that experts can use and others can still trust.",
+      body: "Turning analytical and algorithmic workflows into production systems: backend services, ML components, and interfaces that make complex decisions inspectable by the people who need to act on them.",
     },
     {
       title: "Deployment patterns",
-      body: "SageMaker and Vertex AI for managed ML; ECR into ECS/EKS/Fargate or Artifact Registry into Cloud Run for containerised services; CI/CD across AWS and GCP.",
+      body: "Managed ML with SageMaker and Vertex AI; containerised services through ECR to ECS/EKS/Fargate or Artifact Registry to Cloud Run; CI/CD across AWS and GCP.",
     },
     {
       title: "Strongest contexts",
-      body: "High-constraint systems where decisions matter: transport, infrastructure, resilience, geospatial, and public-sector products that need correctness, traceability, and operational trust.",
+      body: "High-constraint products where the cost of being wrong is real: infrastructure, resilience, geospatial intelligence, public-sector decision support, and systems where trust is part of the product.",
     },
   ],
 };
@@ -174,7 +174,7 @@ export const cvOverviewSummary =
   "The homepage keeps the CV signal compact. The detailed page carries the fuller public summary and the latest CV request flow.";
 
 export const homeCvContent = {
-  title: "This is the short professional version of the work.",
+  title: "The quick CV view: where I’ve worked and what I keep building toward.",
   intro:
     "The recurring thread is fairly consistent: backend systems, algorithms, ML workflows, and product delivery working together in software that people can inspect, use, and trust.",
   note:
@@ -506,4 +506,4 @@ export const homeContactContent = {
 };
 
 export const contactIntro =
-  "The public contact layer stays simple in v1: direct email, public code, and a clear path to ask for the latest CV or discuss relevant engineering work.";
+  "Email is the easiest route for opportunities, CV requests, or a conversation about the systems on this site. LinkedIn and GitHub are there if you want the public profile or the code trail.";

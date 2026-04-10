@@ -16,7 +16,7 @@ export default function ContactPage() {
           backHref="/#contact"
           backLabel="Back to home contact summary"
           eyebrow="Detailed view"
-          title="The public contact layer is direct: email, public code, and a clear path to continue the conversation."
+          title="If the work resonates, I'd be glad to hear from you."
           summary={contactIntro}
         />
 
@@ -26,6 +26,8 @@ export default function ContactPage() {
             label="Email"
             value={siteIdentity.email}
             description="Best for opportunities, collaboration, or asking for the latest CV."
+            actionLabel="Send email"
+            ariaLabel={`Send email to ${siteIdentity.email}`}
             tone="gmail"
           />
 
@@ -34,6 +36,8 @@ export default function ContactPage() {
             label="LinkedIn"
             value={siteIdentity.linkedinLabel}
             description="Professional profile, public experience summary, and a good route for direct outreach."
+            actionLabel="Open LinkedIn"
+            ariaLabel={`Open ${siteIdentity.linkedinLabel} on LinkedIn`}
             tone="linkedin"
             external
           />
@@ -43,6 +47,8 @@ export default function ContactPage() {
             label="GitHub"
             value={siteIdentity.githubLabel}
             description="Public code, portfolio repo, and the most inspectable technical proof."
+            actionLabel="Open GitHub"
+            ariaLabel={`Open ${siteIdentity.githubLabel} on GitHub`}
             tone="github"
             external
           />

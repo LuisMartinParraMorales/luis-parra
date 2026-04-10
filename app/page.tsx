@@ -22,47 +22,47 @@ export default function Home() {
   return (
     <PageWithLocalNav items={homePageSectionNav}>
       <div className="space-y-10 sm:space-y-12">
-      <HomeSection sectionKey="luis-parra" className="overflow-hidden">
-        <div className="grid gap-8 xl:grid-cols-[1.3fr_0.8fr] xl:items-start">
-          <div className="space-y-6">
-            <p className="eyebrow">{heroContent.eyebrow}</p>
-            <h1 className="section-title max-w-4xl text-5xl leading-[0.95] font-normal sm:text-6xl lg:text-[5rem]">
-              {siteIdentity.title}
-            </h1>
-            <p className="max-w-3xl text-base tracking-[0.1em] text-muted uppercase sm:text-lg">
-              {siteIdentity.subtitle}
-            </p>
-            <p className="max-w-3xl text-lg leading-8 text-foreground/92 sm:text-xl">
-              {heroContent.intro}
-            </p>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="#projects"
-                className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background hover:translate-y-[-1px]"
-              >
-                Explore flagship projects
-              </Link>
-              <Link
-                href="/cv"
-                className="inline-flex items-center justify-center rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground hover:bg-white/40"
-              >
-                Read public CV summary
-              </Link>
+        <HomeSection sectionKey="luis-parra" className="overflow-hidden">
+          <div className="grid gap-7 xl:grid-cols-[minmax(0,1.12fr)_minmax(30rem,0.88fr)] xl:items-start">
+            <div className="space-y-6">
+              <p className="eyebrow">{heroContent.eyebrow}</p>
+              <h1 className="section-title max-w-4xl text-5xl leading-[0.95] font-normal sm:text-6xl lg:text-[4.85rem]">
+                {siteIdentity.title}
+              </h1>
+              <p className="max-w-3xl text-base tracking-[0.1em] text-muted uppercase sm:text-lg">
+                {siteIdentity.subtitle}
+              </p>
+              <p className="max-w-3xl text-lg leading-8 text-foreground/92 sm:text-xl">
+                {heroContent.intro}
+              </p>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="#projects"
+                  className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background hover:translate-y-[-1px]"
+                >
+                  Explore flagship projects
+                </Link>
+                <Link
+                  href="/cv"
+                  className="inline-flex items-center justify-center rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground hover:bg-white/40"
+                >
+                  Read public CV summary
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid gap-3.5">
+              {heroContent.signalCards.map((card) => (
+                <article key={card.title} className="info-card rounded-[1.4rem] px-5 py-4">
+                  <p className="eyebrow">{card.title}</p>
+                  <p className="mt-3 text-base leading-7 text-foreground/90">
+                    {card.body}
+                  </p>
+                </article>
+              ))}
             </div>
           </div>
-
-          <div className="grid gap-4">
-            {heroContent.signalCards.map((card) => (
-              <article key={card.title} className="info-card rounded-[1.4rem] p-5">
-                <p className="eyebrow">{card.title}</p>
-                <p className="mt-3 text-base leading-8 text-foreground/90">
-                  {card.body}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </HomeSection>
+        </HomeSection>
 
       <HomeSection sectionKey="projects">
         <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
@@ -210,6 +210,8 @@ export default function Home() {
               href={`mailto:${siteIdentity.email}`}
               label="Email"
               value={siteIdentity.email}
+              actionLabel="Send email"
+              ariaLabel={`Send email to ${siteIdentity.email}`}
               tone="gmail"
               compact
             />
@@ -217,6 +219,8 @@ export default function Home() {
               href={siteIdentity.linkedinUrl}
               label="LinkedIn"
               value={siteIdentity.linkedinLabel}
+              actionLabel="Open LinkedIn"
+              ariaLabel={`Open ${siteIdentity.linkedinLabel} on LinkedIn`}
               tone="linkedin"
               compact
               external
@@ -225,6 +229,8 @@ export default function Home() {
               href={siteIdentity.githubUrl}
               label="GitHub"
               value={siteIdentity.githubLabel}
+              actionLabel="Open GitHub"
+              ariaLabel={`Open ${siteIdentity.githubLabel} on GitHub`}
               tone="github"
               compact
               external

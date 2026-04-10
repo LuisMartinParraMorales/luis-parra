@@ -7,6 +7,8 @@ type ContactMethodCardProps = {
   label: string;
   value: string;
   description?: string;
+  actionLabel?: string;
+  ariaLabel?: string;
   tone: ContactMethodTone;
   compact?: boolean;
   external?: boolean;
@@ -104,6 +106,8 @@ export function ContactMethodCard({
   label,
   value,
   description,
+  actionLabel,
+  ariaLabel,
   tone,
   compact = false,
   external = false,
@@ -112,11 +116,12 @@ export function ContactMethodCard({
   const sharedProps = external ? { target: "_blank", rel: "noreferrer" } : {};
   const headingClassName = compact
     ? "mt-3 text-lg font-semibold"
-    : "mt-3 text-2xl font-semibold";
+    : "contact-card-value mt-3";
 
   return (
     <a
       href={href}
+      aria-label={ariaLabel}
       {...sharedProps}
       className={cn(
         "info-card contact-card rounded-[1.4rem] p-5 sm:p-6",
@@ -126,7 +131,7 @@ export function ContactMethodCard({
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <p className="eyebrow">{label}</p>
-          <p className={cn(headingClassName, "break-words")}>{value}</p>
+          <p className={headingClassName}>{value}</p>
         </div>
         <span
           className={cn("contact-icon-shell shrink-0", toneClassByTone[tone])}
@@ -138,6 +143,13 @@ export function ContactMethodCard({
 
       {description ? (
         <p className="mt-4 text-sm leading-7 text-muted sm:text-base">{description}</p>
+      ) : null}
+
+      {actionLabel ? (
+        <div className="contact-card-action" aria-hidden="true">
+          <span>{actionLabel}</span>
+          <span className="contact-card-action-icon">↗</span>
+        </div>
       ) : null}
     </a>
   );
