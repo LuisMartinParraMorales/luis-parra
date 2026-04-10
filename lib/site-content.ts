@@ -3,7 +3,6 @@ import { buildGmailComposeUrl } from "@/lib/utils";
 export type SectionKey =
   | "luis-parra"
   | "projects"
-  | "about"
   | "how-i-build"
   | "cv"
   | "contact";
@@ -73,6 +72,11 @@ export type EducationEntry = {
   detail: string;
 };
 
+export type BuildPractice = {
+  title: string;
+  body: string;
+};
+
 export const siteIdentity = {
   name: "Luis Parra",
   title: "Software & ML Engineer",
@@ -94,7 +98,6 @@ export const siteIdentity = {
 export const navigation: NavItem[] = [
   { key: "luis-parra", label: "Home", route: "/" },
   { key: "projects", label: "Projects", route: "/projects" },
-  { key: "about", label: "About", route: "/about" },
   { key: "how-i-build", label: "How I Build", route: "/how-i-build" },
   { key: "cv", label: "CV", route: "/cv" },
   { key: "contact", label: "Contact", route: "/contact" },
@@ -103,7 +106,6 @@ export const navigation: NavItem[] = [
 export const routeToSectionKey: Record<string, SectionKey> = {
   "/": "luis-parra",
   "/projects": "projects",
-  "/about": "about",
   "/how-i-build": "how-i-build",
   "/cv": "cv",
   "/contact": "contact",
@@ -112,7 +114,6 @@ export const routeToSectionKey: Record<string, SectionKey> = {
 export const homePageSectionNav: SectionNavItem[] = [
   { id: "luis-parra", label: "Intro" },
   { id: "projects", label: "Projects overview" },
-  { id: "about", label: "Profile summary" },
   { id: "how-i-build", label: "Build summary" },
   { id: "cv", label: "CV snapshot" },
   { id: "contact", label: "Contact" },
@@ -126,16 +127,11 @@ export const projectsPageSectionNav: SectionNavItem[] = [
   { id: "argos", label: "Argos" },
 ];
 
-export const aboutPageSectionNav: SectionNavItem[] = [
-  { id: "about-overview", label: "Overview" },
-  { id: "about-narrative", label: "Narrative" },
-  { id: "about-capabilities", label: "Capabilities" },
-];
-
 export const buildPageSectionNav: SectionNavItem[] = [
   { id: "build-overview", label: "Overview" },
-  { id: "build-deployment", label: "Deployment" },
-  { id: "build-principles", label: "Principles" },
+  { id: "build-process", label: "Working loop" },
+  { id: "build-ai", label: "AI augmentation" },
+  { id: "build-delivery", label: "Delivery" },
 ];
 
 export const cvPageSectionNav: SectionNavItem[] = [
@@ -152,21 +148,21 @@ export const contactPageSectionNav: SectionNavItem[] = [
 ];
 
 export const heroContent = {
-  eyebrow: "Backend systems, ML delivery, analytical products",
+  eyebrow: "Backend systems, ML engineering, analytical products",
   intro:
-    "I build backend-heavy software and ML products that turn analytical workflows into usable decision-support tools across transport, geospatial, simulation, and public-sector contexts.",
+    "I build backend-heavy software and ML systems that turn complex analytical logic into products people can actually use, inspect, and trust. The domains change, but the pattern stays the same: make the workflow explicit, choose the right runtime, and ship something credible.",
   signalCards: [
     {
       title: "Current focus",
-      body: "Productising analytical workflows with backend services, ML pipelines, and interfaces that non-specialists can trust.",
+      body: "Turning complex analytical and algorithmic workflows into production-grade systems with backend services, ML components, and interfaces that experts can use and others can still trust.",
     },
     {
       title: "Deployment patterns",
-      body: "SageMaker, ECR into ECS/EKS, ECR into Lambda, and CI/CD through CodeBuild and CodePipeline.",
+      body: "SageMaker and Vertex AI for managed ML; ECR into ECS/EKS/Fargate or Artifact Registry into Cloud Run for containerised services; CI/CD across AWS and GCP.",
     },
     {
       title: "Strongest contexts",
-      body: "Transport, geospatial, simulation, infrastructure, and public-sector systems where correctness and delivery both matter.",
+      body: "High-constraint systems where decisions matter: transport, infrastructure, resilience, geospatial, and public-sector products that need correctness, traceability, and operational trust.",
     },
   ],
 };
@@ -176,6 +172,14 @@ export const projectsOverviewSummary =
 
 export const cvOverviewSummary =
   "The homepage keeps the CV signal compact. The detailed page carries the fuller public summary and the latest CV request flow.";
+
+export const homeCvContent = {
+  title: "This is the short professional version of the work.",
+  intro:
+    "The recurring thread is fairly consistent: backend systems, algorithms, ML workflows, and product delivery working together in software that people can inspect, use, and trust.",
+  note:
+    "The detailed page has the fuller public summary and an easy way to request the latest CV.",
+};
 
 export const featuredProjects: ProjectCard[] = [
   {
@@ -346,27 +350,6 @@ export const featuredProjects: ProjectCard[] = [
   },
 ];
 
-export const aboutNarrative = [
-  "I am strongest where analytical logic and software delivery meet. The work usually starts in an awkward state: a spreadsheet process, a GTFS pipeline, a simulation output, or a prototype that only specialists can operate confidently.",
-  "My role is to preserve what matters in that analytical core while giving it a cleaner system shape: typed APIs, backend services, orchestration-aware workflows, and interfaces that let people use the system without touching the internals.",
-  "That makes the profile broader than a generic data scientist and more product-facing than a purely algorithmic specialist. It is a backend-heavy, cloud-capable engineering profile grounded in algorithms, decision support, and operational rigor.",
-];
-
-export const aboutHighlights = [
-  {
-    title: "Where the profile is strongest",
-    body: "Software and ML systems that need algorithms, product delivery, and deployment choices to work together as one credible whole.",
-  },
-  {
-    title: "What makes it distinctive",
-    body: "Transport, geospatial, simulation, and public-sector depth combined with the ability to build services, runtimes, and usable analytical interfaces.",
-  },
-  {
-    title: "Best-fit role families",
-    body: "Software & ML Engineer, ML Systems / AI Systems Engineer, and backend-heavy analytical product roles where operational rigor matters.",
-  },
-];
-
 export const capabilityGroups: CapabilityGroup[] = [
   {
     title: "Backend Systems & Full-Stack Delivery",
@@ -395,29 +378,83 @@ export const capabilityGroups: CapabilityGroup[] = [
   },
 ];
 
-export const buildPrinciples = [
+export const homeBuildSummary =
+  "I usually start on paper, not in the editor. I sketch the problem, research options with AI and primary sources, pressure-test the architecture with people, and then build in small, test-led slices that stay readable enough to own line by line.";
+
+export const homeBuildHighlights: BuildPractice[] = [
   {
-    title: "Start from the analytical core",
-    body: "I begin with the real scoring logic, routing workflow, simulation output, or domain constraint instead of designing the surface first and hoping the internals catch up.",
+    title: "Start before the editor",
+    body: "Sketches, notes, and rough diagrams help me separate the real problem from the first implementation idea before I write code.",
   },
   {
-    title: "Choose the right runtime shape",
-    body: "Managed ML platforms, containerised microservices, and serverless functions each solve different operational problems. I choose the runtime to match the workflow, not the trend.",
+    title: "Use AI to widen the search space",
+    body: "I use AI to research options faster, but I still read docs, compare approaches, and decide the architecture myself.",
   },
   {
-    title: "Make trust visible in the system",
-    body: "Typed contracts, tests, validation, regression checks, and explicit tradeoffs are part of the product itself when the software supports real decisions.",
-  },
-  {
-    title: "Use AI without dropping standards",
-    body: "AI can accelerate engineering, but the outcome still has to be understandable, maintainable, and reliable after the first demo or prototype stage.",
+    title: "Ship with ownership",
+    body: "Small PRs, tests, documentation, and CI/CD help me move quickly without losing control of the code or the reasoning behind it.",
   },
 ];
 
-export const deploymentPatterns = [
-  "Managed ML platforms such as SageMaker for model-centric delivery.",
-  "Containerised microservices built from ECR into ECS/EKS on Fargate or EC2 for service-heavy systems.",
-  "Serverless services packaged from ECR into Lambda for targeted event-driven workflows.",
+export const buildWorkingLoop: BuildPractice[] = [
+  {
+    title: "Start with paper and notes",
+    body: "I usually begin away from the editor. Sketching the workflow on paper helps me make the problem concrete before I commit to a technical shape.",
+  },
+  {
+    title: "Research broadly, then narrow deliberately",
+    body: "I look across algorithms, cloud runtimes, papers, docs, and implementation patterns. AI helps me explore faster, but I still want the tradeoffs in front of me before I choose.",
+  },
+  {
+    title: "Architect before I automate",
+    body: "Once the constraints are clear, I design the system shape, interfaces, and failure boundaries before I try to generate or implement code.",
+  },
+  {
+    title: "Pressure-test the design with people",
+    body: "Before the architecture is locked in, I like to review it with teammates, a pair, or someone more senior. A fresher human mind catches risks that momentum can miss.",
+  },
+  {
+    title: "Build in small reviewable slices",
+    body: "I prefer small PRs and explicit steps. That keeps reviews easier, limits regressions, and makes every change, including AI-assisted code, something I can inspect line by line.",
+  },
+  {
+    title: "Use tests to understand the logic",
+    body: "TDD is not only a safety net for me. Writing tests first helps me pin down behavior, understand edge cases, and reduce hallucination risk when AI is in the loop.",
+  },
+];
+
+export const buildAiPractices: BuildPractice[] = [
+  {
+    title: "AI is a research and acceleration tool",
+    body: "I use AI to compare options, pressure-test ideas, generate drafts, and move faster through repetitive implementation work. It helps me cover more ground, especially when the space includes unfamiliar libraries or cloud products.",
+  },
+  {
+    title: "Architecture and judgment stay human",
+    body: "AI can suggest patterns, but I still decide the system boundaries, the contracts, and the deployment shape. That is where most of the long-term quality comes from.",
+  },
+  {
+    title: "Ownership never leaves me",
+    body: "Even if AI writes part of the first draft, I still own every line that ships. Small PRs, tests, and review discipline are how I keep that true.",
+  },
+];
+
+export const buildDeliveryPractices: BuildPractice[] = [
+  {
+    title: "Simplify before calling it done",
+    body: "I iterate the code until it feels simpler and clearer than the first working version. I try to remove AI verbosity, unnecessary abstraction, and cleverness that does not pay rent.",
+  },
+  {
+    title: "Document while the context is fresh",
+    body: "I treat documentation as part of the system, not a cleanup task. Good notes, diagrams, and README-level explanations make the work easier to review, reuse, and extend.",
+  },
+  {
+    title: "Put CI/CD in place early",
+    body: "I like the feedback loop to start early: tests, linting, and basic automation first; fuller deployment pipelines once the product shape is stable enough to justify them.",
+  },
+  {
+    title: "Match the runtime to the workload",
+    body: "Managed ML services, containerised microservices, and serverless jobs each solve different problems. I choose the runtime to fit the workload, not the trend.",
+  },
 ];
 
 export const experienceTimeline: ExperienceEntry[] = [
@@ -446,7 +483,7 @@ export const experienceTimeline: ExperienceEntry[] = [
 
 export const education: EducationEntry[] = [
   {
-    award: "MSc Transport with Data Science",
+    award: "MSc Data Science",
     institution: "Imperial College London",
     period: "2024 - 2025",
     detail: "Distinction | Departmental Scholar | COLFUTURO Scholar",
@@ -461,6 +498,12 @@ export const education: EducationEntry[] = [
 
 export const cvSummary =
   "This public summary focuses on the shape of the profile and the evidence behind it: backend delivery, algorithms, ML workflows, and deployment rigor operating as one coherent system.";
+
+export const homeContactContent = {
+  title: "If the work resonates, I’d be glad to hear from you.",
+  intro:
+    "The easiest way to reach me is still the simplest one: send an email, look through the code, or connect on LinkedIn. If you want to talk about engineering work, a role, or one of the systems on this site, that is exactly what this section is for.",
+};
 
 export const contactIntro =
   "The public contact layer stays simple in v1: direct email, public code, and a clear path to ask for the latest CV or discuss relevant engineering work.";

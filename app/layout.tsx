@@ -5,6 +5,7 @@ import {
   Space_Grotesk,
 } from "next/font/google";
 import { NavigationProvider } from "@/components/navigation-provider";
+import { RouteScrollReset } from "@/components/route-scroll-reset";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteIdentity } from "@/lib/site-content";
@@ -45,6 +46,7 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-background text-foreground">
         <NavigationProvider>
+          <RouteScrollReset />
           <div className="site-background" />
           <div className="mx-auto flex min-h-screen w-full max-w-[96rem] flex-col px-4 sm:px-6 lg:px-10">
             <SiteHeader />

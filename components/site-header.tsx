@@ -11,7 +11,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-30 pt-4">
       <div className="site-panel flex flex-col gap-4 rounded-[1.6rem] px-4 py-4 sm:px-5 lg:flex-row lg:items-center lg:justify-between">
-        <Link href="/" className="min-w-0">
+        <Link href="/" scroll className="min-w-0">
           <p className="text-sm font-semibold tracking-[0.12em] uppercase">
             {siteIdentity.name}
           </p>
@@ -28,6 +28,7 @@ export function SiteHeader() {
               <Link
                 key={item.key}
                 href={item.route}
+                scroll
                 className={cn("nav-pill", isActive && "nav-pill-active")}
               >
                 {item.label}

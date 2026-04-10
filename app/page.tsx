@@ -4,17 +4,14 @@ import { HomeSection } from "@/components/home-section";
 import { PageWithLocalNav } from "@/components/page-with-local-nav";
 import { ProjectOverviewCard } from "@/components/project-overview-card";
 import {
-  aboutHighlights,
-  aboutNarrative,
-  buildPrinciples,
   capabilityGroups,
-  contactIntro,
-  cvOverviewSummary,
-  cvSummary,
-  deploymentPatterns,
   education,
   experienceTimeline,
   featuredProjects,
+  homeBuildHighlights,
+  homeBuildSummary,
+  homeContactContent,
+  homeCvContent,
   homePageSectionNav,
   heroContent,
   projectsOverviewSummary,
@@ -96,58 +93,34 @@ export default function Home() {
         </div>
       </HomeSection>
 
-      <HomeSection sectionKey="about">
-        <div className="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="eyebrow">Profile</p>
-            <h2 className="section-title mt-3 text-4xl font-normal sm:text-5xl">
-              A profile built around analytical systems that have to work in the real world.
-            </h2>
-          </div>
-
-          <div className="space-y-5">
-            {aboutNarrative.map((paragraph) => (
-              <p key={paragraph} className="text-base leading-8 text-muted sm:text-lg">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-8 grid gap-5 lg:grid-cols-3">
-          {aboutHighlights.map((item) => (
-            <article key={item.title} className="info-card rounded-[1.4rem] p-5">
-              <p className="eyebrow">{item.title}</p>
-              <p className="mt-3 text-base leading-8 text-foreground/90">
-                {item.body}
-              </p>
-            </article>
-          ))}
-        </div>
-      </HomeSection>
-
       <HomeSection sectionKey="how-i-build">
-        <div className="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
+        <div className="grid gap-8 xl:grid-cols-[0.92fr_1.08fr] xl:items-start">
           <div>
             <p className="eyebrow">How I build</p>
             <h2 className="section-title mt-3 text-4xl font-normal sm:text-5xl">
-              Strong systems come from runtime choices, trust, and restraint.
+              I start on paper, pressure-test the architecture, and ship in small, test-led slices.
             </h2>
-            <div className="mt-8 space-y-4">
-              {deploymentPatterns.map((pattern) => (
-                <div key={pattern} className="info-card rounded-[1.4rem] p-4">
-                  <p className="text-sm leading-7 text-muted sm:text-base">{pattern}</p>
-                </div>
-              ))}
+            <p className="mt-5 max-w-2xl text-base leading-8 text-muted sm:text-lg">
+              {homeBuildSummary}
+            </p>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-muted sm:text-base">
+              AI is part of that loop, but it does not replace architecture, testing,
+              review, or ownership. It helps me move faster without lowering the bar.
+            </p>
+            <div className="mt-6">
+              <Link href="/how-i-build" className="cta-link">
+                <span>Read the full engineering approach</span>
+                <span aria-hidden="true">↗</span>
+              </Link>
             </div>
           </div>
 
-          <div className="grid gap-4">
-            {buildPrinciples.map((principle) => (
-              <article key={principle.title} className="info-card rounded-[1.4rem] p-5">
-                <p className="eyebrow">{principle.title}</p>
+          <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-1">
+            {homeBuildHighlights.map((highlight) => (
+              <article key={highlight.title} className="info-card rounded-[1.4rem] p-5">
+                <p className="eyebrow">{highlight.title}</p>
                 <p className="mt-3 text-base leading-8 text-foreground/90">
-                  {principle.body}
+                  {highlight.body}
                 </p>
               </article>
             ))}
@@ -156,17 +129,17 @@ export default function Home() {
       </HomeSection>
 
       <HomeSection sectionKey="cv">
-        <div className="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
+        <div className="grid gap-8 xl:grid-cols-[0.92fr_1.08fr] xl:items-start">
           <div>
             <p className="eyebrow">CV</p>
             <h2 className="section-title mt-3 text-4xl font-normal sm:text-5xl">
-              Public profile signal, with the fuller summary one click away.
+              {homeCvContent.title}
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-8 text-muted sm:text-lg">
-              {cvSummary}
+              {homeCvContent.intro}
             </p>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-muted sm:text-base">
-              {cvOverviewSummary}
+              {homeCvContent.note}
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link
@@ -178,47 +151,45 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="space-y-5">
-            <div className="grid gap-4 sm:grid-cols-2">
-              {capabilityGroups.map((group) => (
-                <article key={group.title} className="info-card rounded-[1.4rem] p-5">
-                  <p className="eyebrow">{group.title}</p>
-                  <p className="mt-3 text-sm leading-7 text-muted sm:text-base">
-                    {group.summary}
-                  </p>
-                </article>
-              ))}
+          <div className="grid gap-4 lg:grid-cols-[1.18fr_0.82fr]">
+            <div className="info-card rounded-[1.4rem] p-5">
+              <p className="eyebrow">Trajectory</p>
+              <div className="mt-4 space-y-4">
+                {experienceTimeline.map((entry) => (
+                  <article key={`${entry.organization}-${entry.period}`}>
+                    <p className="font-mono text-xs tracking-[0.16em] text-muted uppercase">
+                      {entry.period}
+                    </p>
+                    <h3 className="mt-2 text-lg font-semibold">{entry.role}</h3>
+                    <p className="text-sm text-muted">{entry.organization}</p>
+                  </article>
+                ))}
+              </div>
             </div>
 
-            <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
-              <div className="info-card rounded-[1.4rem] p-5">
-                <p className="eyebrow">Trajectory</p>
-                <div className="mt-4 space-y-4">
-                  {experienceTimeline.map((entry) => (
-                    <article key={`${entry.organization}-${entry.period}`}>
-                      <p className="font-mono text-xs tracking-[0.16em] text-muted uppercase">
-                        {entry.period}
-                      </p>
-                      <h3 className="mt-2 text-lg font-semibold">{entry.role}</h3>
-                      <p className="text-sm text-muted">{entry.organization}</p>
-                    </article>
-                  ))}
-                </div>
-              </div>
-
-              <div className="info-card rounded-[1.4rem] p-5">
-                <p className="eyebrow">Education</p>
-                <div className="mt-4 space-y-4">
-                  {education.map((entry) => (
-                    <article key={`${entry.institution}-${entry.award}`}>
-                      <h3 className="text-base font-semibold">{entry.award}</h3>
-                      <p className="mt-1 text-sm text-muted">{entry.institution}</p>
-                    </article>
-                  ))}
-                </div>
+            <div className="info-card rounded-[1.4rem] p-5">
+              <p className="eyebrow">Education</p>
+              <div className="mt-4 space-y-4">
+                {education.map((entry) => (
+                  <article key={`${entry.institution}-${entry.award}`}>
+                    <h3 className="text-base font-semibold">{entry.award}</h3>
+                    <p className="mt-1 text-sm text-muted">{entry.institution}</p>
+                  </article>
+                ))}
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {capabilityGroups.map((group) => (
+            <article key={group.title} className="info-card rounded-[1.4rem] p-5">
+              <p className="eyebrow">{group.title}</p>
+              <p className="mt-3 text-sm leading-7 text-muted sm:text-base">
+                {group.summary}
+              </p>
+            </article>
+          ))}
         </div>
       </HomeSection>
 
@@ -227,10 +198,10 @@ export default function Home() {
           <div>
             <p className="eyebrow">Contact</p>
             <h2 className="section-title mt-3 text-4xl font-normal sm:text-5xl">
-              Direct contact, public code, and a simple way to keep the conversation moving.
+              {homeContactContent.title}
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-8 text-muted sm:text-lg">
-              {contactIntro}
+              {homeContactContent.intro}
             </p>
           </div>
 
