@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ContactMethodCard } from "@/components/contact-method-card";
 import { HomeSection } from "@/components/home-section";
@@ -14,6 +15,7 @@ import {
   homeCvContent,
   homePageSectionNav,
   heroContent,
+  profilePhoto,
   projectsOverviewSummary,
   siteIdentity,
 } from "@/lib/site-content";
@@ -23,7 +25,7 @@ export default function Home() {
     <PageWithLocalNav items={homePageSectionNav}>
       <div className="space-y-10 sm:space-y-12">
         <HomeSection sectionKey="luis-parra" className="overflow-hidden">
-          <div className="grid gap-7 xl:grid-cols-[minmax(0,1.12fr)_minmax(30rem,0.88fr)] xl:items-start">
+          <div className="grid gap-7 xl:grid-cols-[minmax(0,1.08fr)_minmax(27rem,0.92fr)] xl:items-start">
             <div className="space-y-6">
               <p className="eyebrow">{heroContent.eyebrow}</p>
               <h1 className="section-title max-w-4xl text-5xl leading-[0.95] font-normal sm:text-6xl lg:text-[4.85rem]">
@@ -51,16 +53,48 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid gap-3.5">
-              {heroContent.signalCards.map((card) => (
-                <article key={card.title} className="info-card rounded-[1.4rem] px-5 py-4">
-                  <p className="eyebrow">{card.title}</p>
-                  <p className="mt-3 text-base leading-7 text-foreground/90">
-                    {card.body}
-                  </p>
-                </article>
-              ))}
+            <div>
+              <article className="hero-portrait-card info-card rounded-[1.4rem] p-3">
+                <div className="hero-portrait-frame relative aspect-[6/5] overflow-hidden rounded-[1.18rem]">
+                  <Image
+                    src={profilePhoto.src}
+                    alt={profilePhoto.alt}
+                    fill
+                    priority
+                    sizes="(max-width: 1279px) 100vw, 31vw"
+                    className="hero-portrait-image object-cover"
+                    style={{ objectPosition: "center 16%" }}
+                  />
+                  <div className="hero-portrait-overlay" aria-hidden="true" />
+                </div>
+              </article>
             </div>
+          </div>
+
+          <div className="mt-7 grid gap-3.5 md:grid-cols-3">
+            {heroContent.signalCards.map((card) => (
+              <article key={card.title} className="info-card rounded-[1.4rem] px-5 py-4">
+                <p className="eyebrow">{card.title}</p>
+                <p className="mt-3 text-base leading-7 text-foreground/90">
+                  {card.body}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-6 hero-source-note">
+            <p className="text-sm leading-7 text-muted sm:text-[0.98rem]">
+              {heroContent.repoSignal}
+            </p>
+            <a
+              href={siteIdentity.portfolioRepoUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="hero-source-link"
+            >
+              <span>{siteIdentity.portfolioRepoLabel}</span>
+              <span aria-hidden="true">↗</span>
+            </a>
           </div>
         </HomeSection>
 
@@ -194,7 +228,7 @@ export default function Home() {
       </HomeSection>
 
       <HomeSection sectionKey="contact">
-        <div className="grid gap-6 lg:grid-cols-[1fr_0.8fr] lg:items-end">
+        <div className="grid gap-6 lg:grid-cols-[1fr_0.8fr] lg:items-start">
           <div>
             <p className="eyebrow">Contact</p>
             <h2 className="section-title mt-3 text-4xl font-normal sm:text-5xl">
