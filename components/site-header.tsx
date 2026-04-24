@@ -11,13 +11,18 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-30 pt-4">
       <div className="site-panel flex flex-col gap-4 rounded-[1.6rem] px-4 py-4 sm:px-5 lg:flex-row lg:items-center lg:justify-between">
-        <Link href="/" scroll className="min-w-0">
-          <p className="text-sm font-semibold tracking-[0.12em] uppercase">
-            {siteIdentity.name}
-          </p>
-          <p className="truncate text-sm text-muted">
-            Software &amp; ML Engineer
-          </p>
+        <Link href="/" scroll className="flex min-w-0 items-center gap-3">
+          <span className="brand-mark" aria-hidden="true">
+            LP
+          </span>
+          <span className="min-w-0">
+            <span className="block text-sm font-semibold tracking-[0.12em] uppercase">
+              {siteIdentity.name}
+            </span>
+            <span className="block truncate text-sm text-muted">
+              Software &amp; ML Engineer
+            </span>
+          </span>
         </Link>
 
         <nav className="flex flex-wrap items-center gap-2">

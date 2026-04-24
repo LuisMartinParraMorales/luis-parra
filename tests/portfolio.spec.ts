@@ -10,7 +10,9 @@ test.describe("portfolio site", () => {
       page.getByRole("heading", { name: "Software & ML Engineer" }),
     ).toBeVisible();
     await expect(
-      page.getByAltText("Portrait of Luis Parra in London."),
+      page.getByAltText(
+        "Portrait of Luis Parra in a studio workspace with code, notes, and engineering sketches.",
+      ),
     ).toBeVisible();
     await expect(
       page.getByRole("navigation").getByRole("link", { name: "Home" }),
