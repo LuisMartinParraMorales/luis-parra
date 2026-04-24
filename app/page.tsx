@@ -34,19 +34,27 @@ export default function Home() {
               <p className="max-w-3xl text-base tracking-[0.1em] text-muted uppercase sm:text-lg">
                 {siteIdentity.subtitle}
               </p>
+              <div className="flex flex-wrap gap-2">
+                {heroContent.computePillars.map((pillar) => (
+                  <span key={pillar} className="hero-compute-pill">
+                    <span className="hero-compute-pulse" aria-hidden="true" />
+                    {pillar}
+                  </span>
+                ))}
+              </div>
               <p className="max-w-3xl text-lg leading-8 text-foreground/92 sm:text-xl">
                 {heroContent.intro}
               </p>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="#projects"
-                  className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background hover:translate-y-[-1px]"
+                  className="primary-action"
                 >
                   Explore flagship projects
                 </Link>
                 <Link
                   href="/cv"
-                  className="inline-flex items-center justify-center rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground hover:bg-white/40"
+                  className="secondary-action"
                 >
                   Read public CV summary
                 </Link>
@@ -63,9 +71,14 @@ export default function Home() {
                     priority
                     sizes="(max-width: 1279px) 100vw, 31vw"
                     className="hero-portrait-image object-cover"
-                    style={{ objectPosition: "center 16%" }}
+                    style={{ objectPosition: "center 42%" }}
                   />
+                  <div className="hero-portrait-circuit" aria-hidden="true" />
                   <div className="hero-portrait-overlay" aria-hidden="true" />
+                  <div className="hero-live-chip" aria-hidden="true">
+                    <span />
+                    Systems online
+                  </div>
                 </div>
               </article>
             </div>
@@ -178,7 +191,7 @@ export default function Home() {
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/cv"
-                className="inline-flex items-center justify-center rounded-full bg-accent-ink px-5 py-3 text-sm font-semibold text-white hover:translate-y-[-1px]"
+                className="primary-action"
               >
                 Read public CV summary
               </Link>

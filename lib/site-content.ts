@@ -85,8 +85,8 @@ export type ProfilePhoto = {
 export const siteIdentity = {
   name: "Luis Parra",
   title: "Software & ML Engineer",
-  subtitle: "ML Systems | Algorithms | Full-Stack Products",
-  headline: "Software & ML Engineer | ML Systems | Algorithms | Full-Stack Products",
+  subtitle: "ML Systems | Algorithms | Compute Products",
+  headline: "Software & ML Engineer | ML Systems | Algorithms | Compute Products",
   location: "London, UK",
   email: "luiszapata1998.lmpm@gmail.com",
   githubUrl: "https://github.com/LuisMartinParraMorales",
@@ -104,8 +104,8 @@ export const siteIdentity = {
 };
 
 export const profilePhoto: ProfilePhoto = {
-  src: "/images/profile/luis-parra-imperial-college.jpg",
-  alt: "Portrait of Luis Parra in London.",
+  src: "/images/profile/luis-parra-compute-studio.jpg",
+  alt: "Portrait of Luis Parra in a studio workspace with code, notes, and engineering sketches.",
 };
 
 export const navigation: NavItem[] = [
@@ -161,11 +161,17 @@ export const contactPageSectionNav: SectionNavItem[] = [
 ];
 
 export const heroContent = {
-  eyebrow: "Backend systems, ML engineering, analytical products",
+  eyebrow: "Future SWE, ML systems, compute economy",
   intro:
-    "I build backend-heavy software and ML systems that turn complex analytical logic into products people can actually use, inspect, and trust. The domains change, but the pattern stays the same: make the workflow explicit, choose the right runtime, and ship something credible.",
+    "I build backend-heavy software and ML systems that turn compute, algorithms, and messy analytical logic into products people can actually use, inspect, and trust. The domains change, but the pattern stays the same: make the workflow explicit, choose the right runtime, and ship something credible.",
   repoSignal:
     "This portfolio is part of the work too. The code is public because I like showing how things are put together, not only how they look once they're finished.",
+  computePillars: [
+    "Cloud runtimes",
+    "ML infrastructure",
+    "Graph systems",
+    "Analytical products",
+  ],
   signalCards: [
     {
       title: "Current focus",

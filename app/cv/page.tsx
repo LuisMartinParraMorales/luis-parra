@@ -40,7 +40,7 @@ export default function CvPage() {
               <a
                 href={siteIdentity.cvDownloadUrl}
                 download
-                className="inline-flex items-center justify-center rounded-full bg-accent-ink px-5 py-3 text-sm font-semibold text-white hover:translate-y-[-1px]"
+                className="primary-action"
               >
                 Download public CV
               </a>
@@ -48,7 +48,7 @@ export default function CvPage() {
                 href={siteIdentity.requestCvUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground hover:bg-white/40"
+                className="secondary-action"
               >
                 Request latest CV via Gmail
               </a>
